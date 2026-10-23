@@ -1,0 +1,14 @@
+'use client';
+import type { Answers } from '@/lib/model';
+import { TRANSIT_MODE_LABELS } from '@/data/transport-options';
+
+export function FieldSelect({label,id,value,options,onChange,disabled=false,hint}:{label:string;id:string;value:string;options:string[][];onChange:(v:string)=>void;disabled?:boolean;hint?:string}) {
+ return <div className="form-field"><label htmlFor={id}>{label}</label><select id={id} value={value} disabled={disabled} aria-describedby={hint?`${id}-hint`:undefined} onChange={e=>onChange(e.target.value)}>{options.map(([v,l])=><option key={v} value={v}>{l}</option>)}</select>{hint&&<p id={`${id}-hint`} className="form-hint">{hint}</p>}</div>;
+}
+export const CAR_ARRIVAL_LABELS = {undecided:'Not decided yet',drive:'I’ll drive to the UTD area',ship:'I’d like help shipping it within the U.S.',here:'It’s already in the UTD area'};
+export function CarArrivalField({answers,onChange,id}:{answers:Answers;onChange:(patch:Partial<Answers>)=>void;id:string}) {
+ return <FieldSelect label="How will your car get to the UTD area?" id={id} value={answers.carArrival||'undecided'} options={Object.entries(CAR_ARRIVAL_LABELS)} onChange={v=>onChange({carArrival:v as Answers['carArrival']})} hint="Not decided yet is a valid choice. You can update it any time."/>;
+}
+export function TransportFields({answers:a,onChange,id='transport-preferences',future=true}:{answers:Answers;onChange:(patch:Partial<Answers>)=>void;id?:string;future?:boolean}) {
+ return <><div className="form-grid"><FieldSelect label={future?'How do you plan to get around?':'How do you get around?'} id={`${id}-mode`} value={a.transport} options={[["transit","Public transport or getting a ride"],["car","Driving"],["walking","Walking / cycling"],["undecided","Not decided yet"]]} onChange={v=>onChange({transport:v as Answers['transport']})}/>{a.transport==='transit'&&<FieldSelect label="Which options are you considering?" id={`${id}-transit`} value={a.transitMode||'undecided'} options={Object.entries(TRANSIT_MODE_LABELS)} onChange={v=>onChange({transitMode:v as Answers['transitMode']})}/ >}{a.transport==='car'&&<FieldSelect label={future?'Will you have a car available?':'Do you have a car available?'} id={`${id}-car`} value={a.hasCar?'yes':'no'} options={[["no","No"],["yes","Yes"]]} onChange={v=>onChange({hasCar:v==='yes'})} hint="Choose Yes when a car is arranged, including a rental."/>}</div>{a.transport==='car'&&!a.hasCar&&<FieldSelect label="Would you like help finding a rental car?" id={`${id}-rental`} value={a.rentalHelp||'undecided'} options={[["undecided","Not decided yet"],["yes","Yes, show rental options"],["no","No, I have another plan"]]} onChange={v=>onChange({rentalHelp:v as Answers['rentalHelp']})}/ >}{a.transport==='car'&&a.hasCar&&<CarArrivalField answers={a} onChange={onChange} id={`${id}-arrival`}/>}</>;
+}

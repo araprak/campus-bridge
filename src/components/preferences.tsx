@@ -1,0 +1,42 @@
+'use client';
+import { useId,useRef,useState } from 'react';
+import { CATEGORIES } from '@/domain/plan';
+import { transportationLabel } from '@/data/transport-options';
+import { categoryLabels,dallasDate,updateTransportAnswers,type Answers,type StudentState } from '@/lib/model';
+import { CarArrivalField,CAR_ARRIVAL_LABELS,FieldSelect,TransportFields } from './preference-fields';
+
+export type PreferenceSection = 'arrival'|'housing'|'transport'|'car'|'home-services'|'priorities';
+export type PreferenceSave = (draft:Partial<Answers>,base:Answers)=>Promise<{ok:boolean;error?:string;conflict?:boolean}>;
+const sectionKeys: Record<PreferenceSection,(keyof Answers)[]> = {
+ arrival:['arrivalDate'], housing:['housingLocation','housingType','household'],
+ transport:['transport','hasCar','transitMode','rentalHelp','carArrival'], car:['carArrival'],
+ 'home-services':['electricity','internet'], priorities:['priorities'],
+};
+const titles:Record<PreferenceSection,string>={arrival:'Arrival',housing:'Home',transport:'Getting around',car:'Car arrival','home-services':'Home services',priorities:'Your priorities'};
+export function PreferenceEditor({section,answers,busy,onSave,compact=false,onEditingChange}:{section:PreferenceSection;answers:Answers;busy:boolean;onSave:PreferenceSave;compact?:boolean;onEditingChange?:(editing:boolean)=>void}) {
+ const id=useId(),trigger=useRef<HTMLButtonElement>(null),form=useRef<HTMLFormElement>(null);
+ const [base,setBase]=useState(answers),[draft,setDraft]=useState(answers),[open,setOpen]=useState(false),[error,setError]=useState(''),[conflict,setConflict]=useState(false),[saved,setSaved]=useState(false);
+ function edit(){setBase(answers);setDraft(answers);setError('');setConflict(false);setSaved(false);setOpen(true);onEditingChange?.(true);requestAnimationFrame(()=>form.current?.querySelector<HTMLElement>('input,select,button')?.focus());}
+ function close(){setOpen(false);onEditingChange?.(false);requestAnimationFrame(()=>trigger.current?.focus());}
+ function change(patch:Partial<Answers>){setDraft(d=>updateTransportAnswers({...d,...(patch.housingLocation==='off_campus'&&d.housingType==='residence'?{housingType:'apartment' as const}:{})},patch));setSaved(false);}
+ async function submit(event:React.FormEvent){event.preventDefault();setError('');setConflict(false);const patch=Object.fromEntries(sectionKeys[section].filter(key=>key in draft).map(key=>[key,draft[key]])) as Partial<Answers>;if((section==='car'||section==='transport')&&draft.transport==='car'&&draft.hasCar)patch.carArrival=draft.carArrival||'undecided';const result=await onSave(patch,base);if(result.ok){setSaved(true);close();}else{setError(result.error||'Your changes were not saved. Try again.');setConflict(!!result.conflict);}}
+ const inclusion={unknown:'not sure yet',included:'provided by housing',not_included:'household arranges it'};
+ const summary=section==='arrival'?answers.arrivalDate:section==='housing'?`${answers.housingLocation==='on_campus'?'On campus':'Off campus'} · ${answers.household==='alone'?'Living alone':'Shared household'}`:section==='car'?(answers.carArrival?CAR_ARRIVAL_LABELS[answers.carArrival]:'Not chosen yet'):section==='priorities'?(answers.priorities.map(c=>categoryLabels[c]).join(', ')||'Suggested order'):section==='home-services'?`Electricity: ${inclusion[answers.electricity]}. Internet: ${inclusion[answers.internet]}.`:transportationLabel(answers)+(answers.transport==='car'&&answers.hasCar?` · ${CAR_ARRIVAL_LABELS[answers.carArrival||'undecided']}`:'');
+ return <section id={compact?undefined:section} className={compact?'preference-inline':'card preference-section'} aria-label={`${titles[section]} preferences`}>
+  <div className="preference-heading"><div>{!compact&&<h2>{titles[section]}</h2>}<p>{summary}</p></div><button type="button" ref={trigger} className="button button-outline" aria-expanded={open} aria-controls={`${id}-editor`} disabled={busy} onClick={open?close:edit}>{open?'Cancel':`Edit ${section==='car'?'car arrival':titles[section].toLowerCase()}`}</button></div>
+  {saved&&<p className="save-status" role="status">Saved. Your plan is updated.</p>}
+  {open&&<form ref={form} id={`${id}-editor`} onSubmit={submit}><fieldset disabled={busy} className="preference-fields">
+   {section==='arrival'&&<div className="form-field"><label htmlFor={`${id}-date`}>Arrival date</label><input id={`${id}-date`} type="date" required value={draft.arrivalDate} onChange={e=>change({arrivalDate:e.target.value})}/><p className="form-hint">Your timeline will adjust. Your completed steps stay saved.</p></div>}
+   {section==='housing'&&<><div className="form-grid"><FieldSelect label="Where do you live or plan to live?" id={`${id}-location`} value={draft.housingLocation} options={[["off_campus","Off campus"],["on_campus","On campus"]]} onChange={v=>change({housingLocation:v as Answers['housingLocation']})}/><FieldSelect label="Home type" id={`${id}-type`} disabled={draft.housingLocation==='on_campus'} value={draft.housingLocation==='on_campus'?'':draft.housingType} options={draft.housingLocation==='on_campus'?[["","Campus housing"]]:[["apartment","Apartment"],["house","House / townhome"],["temporary","Temporary housing"]]} onChange={v=>change({housingType:v as Answers['housingType']})}/></div><FieldSelect label="Who do you live with?" id={`${id}-household`} value={draft.household} options={[["roommates","Roommates / shared household"],["alone","Living alone"]]} onChange={v=>change({household:v as Answers['household']})}/><p className="form-hint">Your saved off-campus home stays available if you switch back. Choose a community and lease date in Home.</p></>}
+   {section==='transport'&&<TransportFields answers={draft} id={id} future={draft.arrivalDate>dallasDate()} onChange={change}/>}
+   {section==='car'&&<CarArrivalField answers={draft} id={`${id}-car-arrival`} onChange={change}/>}
+   {section==='home-services'&&<div className="form-grid">{(['electricity','internet'] as const).map(key=><FieldSelect key={key} label={`Does your housing provide ${key==='internet'?'home internet':key}?`} id={`${id}-${key}`} value={draft[key]} options={[["unknown","Not sure yet"],["included","Yes, housing provides it"],["not_included","No, my household arranges it"]]} onChange={v=>change({[key]:v as Answers['electricity']})}/>)}</div>}
+   {section==='priorities'&&<fieldset className="priority-options"><legend>What would you like help with?</legend><p className="form-hint">Choose all that apply. Leave blank for a suggested order.</p>{CATEGORIES.map(category=><label key={category} className={draft.priorities.includes(category)?'selected':''}><input type="checkbox" checked={draft.priorities.includes(category)} onChange={e=>change({priorities:e.target.checked?[...draft.priorities,category]:draft.priorities.filter(c=>c!==category)})}/>{categoryLabels[category]}</label>)}</fieldset>}
+   {error&&<p className="notice error" role="alert">{error}</p>}{conflict&&<div className="preference-conflict"><p>Current saved choices: {summary}. {section==='car'?transportationLabel(answers):section==='home-services'?(answers.housingLocation==='on_campus'?'On-campus housing.':'Off-campus housing.'):''}</p><button type="button" className="button button-outline" onClick={()=>{setBase(answers);setConflict(false);setError('Review your draft above, then save to replace these choices.');}}>Keep my draft and review</button><button type="button" className="button button-outline" onClick={()=>{setBase(answers);setDraft(answers);setConflict(false);setError('');}}>Use saved choices</button></div>}
+   <div className="form-actions"><button type="button" className="button button-outline" onClick={close}>Cancel</button><button className="button" disabled={busy||conflict}>{busy?'Saving…':'Save changes'}</button></div>
+  </fieldset></form>}
+ </section>;
+}
+export function MyPreferences({state,busy,onSave}:{state:StudentState;busy:boolean;onSave:PreferenceSave}) {
+ return <><div className="page-heading"><div><p className="eyebrow">YOUR STARTING POINT</p><h1>My preferences</h1><p>Change a detail. Keep your progress.</p></div></div><nav className="preference-nav" aria-label="Preference sections">{(['arrival','housing','transport','home-services','priorities'] as const).map(section=><a key={section} href={`#${section}`}>{titles[section]}</a>)}</nav>{(['arrival','housing','transport','home-services','priorities'] as const).map(section=><PreferenceEditor key={section} section={section} answers={state.answers} busy={busy} onSave={onSave}/>)}</>;
+}

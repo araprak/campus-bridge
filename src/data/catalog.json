@@ -1,0 +1,395 @@
+{
+  "catalogVersion": "midterm-v1-2026-09-25",
+  "reviewedAt": "2026-09-25",
+  "contentNote": "CampusBridge planning suggestions supported by the linked resources. Time buckets are product recommendations, not university deadlines. Provider availability, costs, transit eligibility, and opening hours must be checked with the source.",
+  "integrationNotes": [
+    "Use publisher identity for Official UTD / Government labels. Do not turn reviewedAt into a live-link-verified claim.",
+    "retrieval_failed means the official search index was reviewed but direct opening failed; it does not prove the public site is down.",
+    "Utility readiness uses the stable arrange-electricity and arrange-home-internet task IDs in every housing context. Historical responsibility IDs remain in the validation catalog and map to the same saved readiness state; do not display duplicate readiness tasks.",
+    "Use electricity_setup/internet_setup only when the student is responsible for setup and has said it is not done; unknown rules are mutually exclusive with setup rules. After unknown is resolved, regenerate applicable tasks.",
+    "For on-campus housing, prefer its residential internet instructions. Do not automatically show commercial home internet or electricity setup tasks solely because a student is new.",
+    "For an arrival date in the future, show essential setup as preparation to complete before arrival when feasible. First 48 Hours is a recommendation window, not a reason to wait until moving day.",
+    "City-specific municipal service links are intentionally omitted. No Richardson-only utility or eligibility assumptions apply to all UTD students.",
+    "No passwords, account credentials, payment information, identity documents, or addresses need to be stored in CampusBridge for these tasks."
+  ],
+  "tasks": [
+    {
+      "id": "confirm-off-campus-move-in",
+      "title": "Confirm your home and lease start",
+      "category": "housing",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "off_campus",
+      "why": "Keep your lease date and key pickup ready before you move.",
+      "steps": [
+        "Choose a community if you have one in mind.",
+        "Save the start date printed on your signed lease.",
+        "Confirm key pickup, move-in instructions and fees with the leasing office."
+      ],
+      "help": "Your leasing office or property manager",
+      "resourceId": "utd-off-campus"
+    },
+    {
+      "id": "prepare-on-campus-check-in",
+      "title": "Prepare for your UTD housing check-in",
+      "category": "housing",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "on_campus",
+      "why": "UTD housing has its own check-in instructions and support channels.",
+      "steps": [
+        "Read your housing assignment message and confirm your assigned check-in date and location.",
+        "Review the current move-in guide and keep your Comet Card accessible.",
+        "Save your housing front-desk contact and use the housing FAQ for residential internet instructions."
+      ],
+      "help": "UTD University Housing or your residential front desk",
+      "resourceId": "utd-housing-move-in"
+    },
+    {
+      "id": "review-roommate-routine",
+      "title": "Review your shared-home routine",
+      "category": "housing",
+      "horizon": "first_30_days",
+      "priority": "standard",
+      "rule": "roommates",
+      "why": "A short check-in can catch unclear household responsibilities before they become recurring problems.",
+      "steps": [
+        "Talk through cleaning, shared essentials, and who handles each household service.",
+        "Write down your agreed routine and a time to revisit it.",
+        "If you live in UTD housing, use the roommate-agreement process with your Peer Advisor; private apartments have their own arrangements."
+      ],
+      "help": "Your roommates; your Peer Advisor if you live in UTD housing",
+      "resourceId": "utd-housing-faq"
+    },
+    {
+      "id": "confirm-electricity-responsibility",
+      "title": "Final check: electricity is ready",
+      "category": "services",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "electricity_unknown",
+      "why": "Confirm power is arranged for the day your lease starts.",
+      "steps": [
+        "Check whether your housing provides electricity or your household must arrange it.",
+        "For included or campus service, follow your housing instructions; arrange a separate provider only if your home requires one.",
+        "Confirm power and access are ready for move-in, and save the appropriate support contact."
+      ],
+      "help": "Your housing contact; a provider only if separate service is required",
+      "resourceId": "utd-off-campus"
+    },
+    {
+      "id": "arrange-electricity",
+      "title": "Final check: electricity is ready",
+      "category": "services",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "electricity_setup",
+      "why": "Confirm power is arranged for the day your lease starts.",
+      "steps": [
+        "Check whether your housing provides electricity or your household must arrange it.",
+        "For included or campus service, follow your housing instructions; arrange a separate provider only if your home requires one.",
+        "Confirm power and access are ready for move-in, and save the appropriate support contact."
+      ],
+      "help": "Your housing contact; a provider only if separate service is required",
+      "resourceId": "texas-power-to-choose"
+    },
+    {
+      "id": "confirm-internet-responsibility",
+      "title": "Final check: internet is ready",
+      "category": "services",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "internet_unknown",
+      "why": "Make sure you can get connected when you move in.",
+      "steps": [
+        "Check whether your building provides internet and ask for its connection instructions.",
+        "For included or campus internet, follow those instructions; arrange separate service only if your home requires it.",
+        "Confirm how to connect your devices and save the appropriate support contact."
+      ],
+      "help": "Your housing contact; an internet provider only if separate service is required",
+      "resourceId": "utd-off-campus"
+    },
+    {
+      "id": "arrange-home-internet",
+      "title": "Final check: internet is ready",
+      "category": "services",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "internet_setup",
+      "why": "Make sure you can get connected when you move in.",
+      "steps": [
+        "Check whether your building provides internet and ask for its connection instructions.",
+        "For included or campus internet, follow those instructions; arrange separate service only if your home requires it.",
+        "Confirm how to connect your devices and save the appropriate support contact."
+      ],
+      "help": "Your housing contact; an internet provider only if separate service is required",
+      "resourceId": "fcc-broadband-guide"
+    },
+    {
+      "id": "plan-campus-transit",
+      "title": "Plan a route to campus",
+      "category": "transportation",
+      "horizon": "first_week",
+      "priority": "standard",
+      "rule": "campus_transport",
+      "why": "A saved route makes the first trip to class easier to navigate.",
+      "steps": [
+        "Open UTD Parking & Transportation and look at the current Comet Cruiser routes and other transit options.",
+        "Check the closest stop, service times, and the return trip for your location.",
+        "Try the route before an important class and keep an alternative for times it does not operate."
+      ],
+      "help": "UTD Parking & Transportation",
+      "resourceId": "utd-transit"
+    },
+    {
+      "id": "check-dart-pass",
+      "title": "Check your student DART pass options",
+      "category": "transportation",
+      "horizon": "first_week",
+      "priority": "standard",
+      "rule": "dart_pass",
+      "why": "The student transit information can help you understand what to arrange before regional trips.",
+      "steps": [
+        "Open the Students link under DART Access Pass on the UTD transportation page.",
+        "Review the current eligibility and application instructions; complete them if you qualify and want the pass.",
+        "Confirm the pass is ready for use before relying on it for a trip."
+      ],
+      "help": "UTD Parking & Transportation",
+      "resourceId": "utd-transit"
+    },
+    {
+      "id": "arrange-campus-parking",
+      "title": "Arrange parking for your campus visits",
+      "category": "transportation",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "parking",
+      "why": "The correct permit or visitor option depends on where and when you will park.",
+      "steps": [
+        "Review UTD parking options for your housing or commuter status and planned visits.",
+        "Use the official parking portal or Parking Office to arrange the appropriate option and check vehicle details.",
+        "Check the current parking map and signs before leaving your vehicle."
+      ],
+      "help": "UTD Parking & Transportation",
+      "resourceId": "utd-parking"
+    },
+    {
+      "id": "check-student-tech",
+      "title": "Set up your student tools",
+      "category": "campus",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "always",
+      "why": "Your classes, email and student records live in different places.",
+      "steps": [
+        "Open the OIT New to UTD guide and follow the NetID and student technology checklist links.",
+        "Check that you can access your UTD email and course systems using the official sign-in pages.",
+        "Contact the OIT Service Desk if access fails."
+      ],
+      "help": "UTD OIT Service Desk",
+      "resourceId": "utd-new-student-tech"
+    },
+    {
+      "id": "get-comet-card",
+      "title": "Get your Comet Card ready",
+      "category": "campus",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "always",
+      "why": "Your Comet Card is your campus ID and is used for campus services.",
+      "steps": [
+        "Open the Comet Card Office page and choose Get your Comet Card.",
+        "Review the current request, identification, and collection instructions.",
+        "Complete the process through UTD and keep the card accessible for campus visits."
+      ],
+      "help": "UTD Comet Card Office",
+      "resourceId": "utd-comet-card"
+    },
+    {
+      "id": "find-campus-destinations",
+      "title": "Know your campus",
+      "category": "campus",
+      "horizon": "first_week",
+      "priority": "standard",
+      "rule": "always",
+      "why": "Find the buildings you will use most.",
+      "steps": [
+        "Explore the building guide below.",
+        "Open a map for each place you expect to visit.",
+        "Find your classrooms in your course schedule."
+      ],
+      "help": "UTD campus directory or the office you plan to visit",
+      "resourceId": "utd-campus-map"
+    },
+    {
+      "id": "plan-campus-meals",
+      "title": "Find your campus food spots",
+      "category": "daily_life",
+      "horizon": "first_week",
+      "priority": "standard",
+      "rule": "always",
+      "why": "See dining locations before you need a meal.",
+      "steps": [
+        "Explore dining options and their buildings below.",
+        "Check current opening hours before you go.",
+        "Choose a convenient place for your first campus day."
+      ],
+      "help": "UTD Student Union dining venues",
+      "resourceId": "utd-dining"
+    },
+    {
+      "id": "save-essentials-support",
+      "title": "Find everyday support",
+      "category": "daily_life",
+      "horizon": "first_30_days",
+      "priority": "standard",
+      "rule": "always",
+      "why": "Know where to find food and basic supplies.",
+      "steps": [
+        "Find the Comet Cupboard in the campus guide.",
+        "Check current visit instructions.",
+        "Save the location for when you need it."
+      ],
+      "help": "UTD Comet Cupboard team",
+      "resourceId": "utd-comet-cupboard"
+    },
+    {
+      "id": "set-up-mobile-service",
+      "title": "Get your phone connected",
+      "category": "services",
+      "horizon": "first_48_hours",
+      "priority": "standard",
+      "rule": "always",
+      "why": "Find a plan that fits your phone and budget.",
+      "steps": [
+        "Check your unlocked phone and eSIM or SIM compatibility.",
+        "Compare coverage, full price and renewal terms.",
+        "Activate your plan and test calls and data."
+      ],
+      "help": "The mobile provider can check your phone and plan requirements.",
+      "resourceId": "utd-new-student-tech"
+    }
+  ],
+  "resources": [
+    {
+      "id": "utd-off-campus",
+      "title": "UTD: How to rent an apartment",
+      "url": "https://icp.utdallas.edu/resources/housing/apartment-resource/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas Intercultural Programs",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. The article is dated May 26, 2023. Use it for general housing questions, not current provider availability, pricing, or legal advice."
+    },
+    {
+      "id": "utd-housing-move-in",
+      "title": "UTD University Housing: Move-in resources",
+      "url": "https://housing.utdallas.edu/resources/move-in/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas University Housing",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Follow the housing assignment message and current term instructions; no dates from the page are hard-coded here."
+    },
+    {
+      "id": "utd-housing-faq",
+      "title": "UTD University Housing: Move-in FAQs",
+      "url": "https://housing.utdallas.edu/resources/move-in/resources-and-faqs/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas University Housing",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Peer Advisor and residential technology guidance applies to UTD housing, not private apartments."
+    },
+    {
+      "id": "utd-transit",
+      "title": "UTD Parking & Transportation",
+      "url": "https://services.utdallas.edu/transit/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas Parking & Transportation",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Hub includes current Comet Cruiser maps and a Students link under DART Access Pass. No fare, eligibility guarantee, route number, or schedule is hard-coded."
+    },
+    {
+      "id": "utd-parking",
+      "title": "UTD: Parking permits and parking information",
+      "url": "https://services.utdallas.edu/transit/park/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas Parking & Transportation",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. No prices, grace periods, or enforcement times are hard-coded; users must confirm their current permit and space rules."
+    },
+    {
+      "id": "texas-power-to-choose",
+      "title": "Texas Power to Choose",
+      "url": "https://www.powertochoose.org/",
+      "sourceType": "government",
+      "publisher": "Public Utility Commission of Texas",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Direct retrieval returned 402. Ownership and purpose are documented in PUCT publications, including its 2023 biennial report and January 5, 2024 release. This resource is for addresses eligible for retail electric choice; listings and availability are not independently verified here."
+    },
+    {
+      "id": "fcc-broadband-guide",
+      "title": "FCC: Find internet options with the National Broadband Map",
+      "url": "https://help.bdc.fcc.gov/hc/en-us/articles/10467446103579-How-to-Use-the-FCC-s-National-Broadband-Map",
+      "sourceType": "government",
+      "publisher": "Federal Communications Commission",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "content_retrieved",
+      "reviewNote": "Full official guide retrieved and read. It explains searching an address for provider-reported availability. A map listing is not a guarantee of service at a specific unit; confirm with the provider."
+    },
+    {
+      "id": "utd-new-student-tech",
+      "title": "UTD OIT: New to UTD",
+      "url": "https://oit.utdallas.edu/new-to-utd/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas Office of Information Technology",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Hub links to NetID/password, email, Galaxy/eLearning, Wi-Fi, and the student technology checklist."
+    },
+    {
+      "id": "utd-comet-card",
+      "title": "UTD Comet Card Office",
+      "url": "https://cometcard.utdallas.edu/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas Comet Card Office",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. The card is the campus ID; users should follow the current Get your Comet Card process and requirements."
+    },
+    {
+      "id": "utd-campus-map",
+      "title": "UTD interactive campus map",
+      "url": "https://map.utdallas.edu/",
+      "sourceType": "official_utd",
+      "publisher": "The University of Texas at Dallas",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "page_shell_retrieved",
+      "reviewNote": "Official page retrieved but contains an embedded map shell; interactive map behavior and place results were not verified. UTD Contact & Location separately links to this campus map."
+    },
+    {
+      "id": "utd-dining",
+      "title": "UTD Student Union: Dining",
+      "url": "https://union.utdallas.edu/facilities/dining/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas Student Union",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Contains Student Union and Student Services Addition dining options; users should check current hours and menus."
+    },
+    {
+      "id": "utd-comet-cupboard",
+      "title": "UTD Comet Cupboard",
+      "url": "https://cometcupboard.utdallas.edu/",
+      "sourceType": "official_utd",
+      "publisher": "UT Dallas Comet Cupboard",
+      "reviewedAt": "2026-09-25",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. The page describes food, personal-care, and household-item support and first-visit requirements. Posted hours were not treated as current."
+    }
+  ]
+}

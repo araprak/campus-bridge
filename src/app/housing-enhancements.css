@@ -1,0 +1,41 @@
+.apartment-rating { display: grid; gap: .3rem; margin: .85rem 0; font-size: .8rem; line-height: 1.5; }
+.apartment-rating strong { font-size: .84rem; color: #493c51; }
+.apartment-rating small, .apartment-rating span { display: block; }
+.apartment-rating a { color: #573e6a; text-decoration: underline; text-underline-offset: 3px; }
+.apartment-reviews-button { display: inline-flex; align-items: center; justify-content: space-between; gap: .8rem; justify-self: start; border: 0; border-radius: 5px; padding: .35rem 0; background: transparent; color: #573e6a; text-align: left; font: inherit; font-weight: 700; cursor: pointer; }
+.apartment-reviews-button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.apartment-reviews-button:focus-visible { outline: 3px solid #79528e; outline-offset: 4px; }
+.apartment-review-dialog { width: min(720px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; padding: 0; border: 1px solid #d9cfe0; border-radius: 18px; background: #fff; color: #312837; box-shadow: 0 24px 80px #25182a38; overflow: auto; }
+.apartment-review-dialog::backdrop { background: #211b27a6; }
+.apartment-review-dialog > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid #e6dfe9; }
+.apartment-review-dialog h2 { margin: .35rem 0 .55rem; font-size: clamp(1.35rem, 4vw, 1.85rem); line-height: 1.2; }
+.apartment-review-dialog header p { margin: 0; font-size: .9rem; line-height: 1.6; }
+.apartment-review-dialog .eyebrow { font-size: .72rem; color: #624277; letter-spacing: .1em; }
+.apartment-review-dialog .discovery-close { flex-shrink: 0; }
+.apartment-review-body { padding: 1.25rem 1.5rem 1.5rem; }
+.apartment-review-match-help, .apartment-review-note { font-size: .85rem; line-height: 1.65; color: #5b5260; margin: 0 0 1rem; }
+.apartment-review-note { margin: 1rem 0; }
+.apartment-review-status { padding: 1rem; border-radius: 10px; margin: 0 0 1rem; background: #f5f0f8; font-size: .9rem; line-height: 1.6; }
+.apartment-review-status p { margin: .5rem 0 1rem; }
+.apartment-review-widget { min-width: 0; width: 100%; color-scheme: light; }
+.apartment-review-widget > * { width: 100%; }
+.apartment-review-external { display: inline-block; color: #573e6a; margin-top: 1rem; font-size: .85rem; line-height: 1.6; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 480px) { .apartment-review-dialog > header, .apartment-review-body { padding: 1rem; } }
+.housing-saved-navigation { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 .5rem; }
+.housing-saved-navigation button, .discovery-favorite-button { border: 1px solid #cbbdd3; background: #fff; border-radius: 8px; padding: .65rem .85rem; color: #573e6a; font: inherit; font-size: .82rem; cursor: pointer; }
+.housing-saved-navigation button[aria-pressed=true], .discovery-favorite-button[aria-pressed=true] { background: #eee7f2; color: #39204b; border-color: #79528e; }
+.discovery-favorite-button { margin: .25rem 0 .6rem; align-self: start; }
+.discovery-favorite-button:disabled { cursor: wait; opacity: .55; }
+.housing-zip-search { display: flex; gap: .7rem; align-items: end; flex-wrap: wrap; margin-top: 1.4rem; }
+.housing-zip-search label { display: grid; gap: .5rem; font-size: .85rem; font-weight: 600; }
+.housing-zip-search input, .housing-cost-estimator input, .housing-cost-estimator select { border: 1px solid #cbbdd3; border-radius: 8px; background: white; color: #312837; padding: .65rem; font: inherit; min-width: 0; max-width: 100%; }
+.housing-cost-estimator { margin: 1.3rem 0; padding: 1rem; border: 1px solid #d9cfe0; border-radius: 12px; background: #faf8fb; }
+.housing-cost-estimator summary { cursor: pointer; font-weight: 700; font-size: 1rem; color: #493454; }
+.housing-cost-estimator p { font-size: .85rem; line-height: 1.65; }
+.housing-cost-basis { display: flex; flex-wrap: wrap; gap: 1rem; }
+.housing-cost-basis label { display: grid; gap: .5rem; font-size: .85rem; }
+.housing-cost-estimator fieldset { border: 1px solid #ded5e3; margin: 1rem 0; padding: 1rem; border-radius: 8px; }
+.housing-cost-estimator legend { font-size: .86rem; font-weight: 600; }
+.housing-cost-item { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(170px, 1.4fr) minmax(80px, 1fr); gap: .65rem; align-items: center; margin: .65rem 0; font-size: .82rem; }
+.housing-cost-result { border-left: 3px solid #79528e; padding: .8rem 1rem; background: white; font-size: .9rem; }
+@media (max-width: 640px) { .housing-cost-item { grid-template-columns: 1fr; gap: .35rem; margin-bottom: 1.1rem; } .housing-zip-search { align-items: stretch; } .housing-zip-search label { width: 100%; } .housing-saved-navigation button { flex: 1; } }

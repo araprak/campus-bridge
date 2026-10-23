@@ -1,0 +1,8 @@
+import { readFile, writeFile } from 'node:fs/promises';
+const catalog=JSON.parse(await readFile(new URL('../src/data/catalog.json',import.meta.url),'utf8'));
+const quote=value=>"'"+String(value).replaceAll("'","''")+"'";
+const rows=['-- Generated from src/data/catalog.json. Regenerate with npm run seed:generate.','begin;'];
+for(const r of catalog.resources){rows.push(`insert into public.resources(id,title,url,source_type,publisher,reviewed_at,link_check_status,content) values(${[r.id,r.title,r.url,r.sourceType,r.publisher,r.reviewedAt,r.linkCheckStatus,JSON.stringify(r)].map(quote).join(',')}) on conflict(id) do update set title=excluded.title,url=excluded.url,source_type=excluded.source_type,publisher=excluded.publisher,reviewed_at=excluded.reviewed_at,link_check_status=excluded.link_check_status,content=excluded.content;`);}
+for(const t of catalog.tasks){rows.push(`insert into public.task_templates(id,title,category,horizon,priority,content) values(${[t.id,t.title,t.category,t.horizon,t.priority,JSON.stringify(t)].map(quote).join(',')}) on conflict(id) do update set title=excluded.title,category=excluded.category,horizon=excluded.horizon,priority=excluded.priority,content=excluded.content;`);rows.push(`insert into public.task_rules(task_id,rule_key) values(${quote(t.id)},${quote(t.rule)}) on conflict(task_id) do update set rule_key=excluded.rule_key;`);rows.push(`insert into public.task_resources(task_id,resource_id) values(${quote(t.id)},${quote(t.resourceId)}) on conflict do nothing;`);}
+rows.push('commit;');await writeFile(new URL('../supabase/migrations/202609250002_catalog.sql',import.meta.url),rows.join('\n')+'\n');
+console.log(`Generated ${catalog.tasks.length} tasks and ${catalog.resources.length} resources.`);
