@@ -1,0 +1,22 @@
+[
+  {
+    "version": "1.0.0",
+    "date": "2026-10-24",
+    "title": "Meet the team and follow product updates",
+    "notesPath": "docs/releases/v1.0.0.md",
+    "features": [
+      {
+        "title": "About the team",
+        "summary": "See the CampusBridge team’s photos and names on the About page."
+      },
+      {
+        "title": "Linked version history",
+        "summary": "Open a version number to read its full release notes on GitHub."
+      },
+      {
+        "title": "Release notes for every feature",
+        "summary": "Each future feature update will include a new version and notes explaining what changed."
+      }
+    ]
+  }
+]

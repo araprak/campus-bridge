@@ -1,3 +1,9 @@
+## v1.0.0 — Team About page and version history (October 24, 2026)
+
+The [About page](https://campusbridgeguide.com/about) shows the four team members’ photos and names. The existing explanation now lives at [How it works](https://campusbridgeguide.com/how-it-works). [Version history](https://campusbridgeguide.com/releases) links each version directly to its release document on GitHub, beginning with [v1.0.0](docs/releases/v1.0.0.md).
+
+Every future feature needs a version and release notes covering each user-facing change. Follow the [release process](docs/releases/README.md); the build validates release records and the GitHub check requires a new version for product changes. Older planning labels remain request groupings, not retroactively assigned release versions.
+
 ## Reviews update — live (October 20, 2026)
 
 Apartment cards, details, comparisons and map popups now open an on-demand Google ratings and reviews panel on [campusbridgeguide.com](https://campusbridgeguide.com/dashboard). Six exact listing IDs are verified; other communities use a visitor-confirmed Google listing search. Google renders its own ratings, reviews and attribution. No scores or review text are copied to the catalog. The owner approved Places UI Kit activation; the service and `NEXT_PUBLIC_GOOGLE_REVIEWS_ENABLED` are enabled while exact website and API restrictions remain in place. Deployment `dpl_FKhDRc51NDRH4EVyGkDUAmumt3sx` was tested as a staged production build and promoted unchanged. All 218 tests, typecheck and optimized builds passed. Hosted Madison listing selection, canonical-domain Northside reviews, map integration, password login and 390px mobile layout were verified. The disposable account and dependent records were deleted after signout. See [review release evidence and quota limitations](../CampusBridge-Reviews-Release.md).

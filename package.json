@@ -1,6 +1,6 @@
 {
   "name": "campusbridge",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "CampusBridge personalized first 30 days navigator for new UTD students.",
@@ -9,6 +9,8 @@
   },
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
+    "check:releases": "node scripts/check-releases.mjs",
+    "prebuild": "npm run check:releases",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1",
     "typecheck": "tsc --noEmit",

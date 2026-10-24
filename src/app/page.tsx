@@ -14,7 +14,7 @@ export default function Home() {
             <p className="hero-description">Find a home. Set up the essentials. Get to know UT Dallas—all in one personal plan.</p>
             <div className="hero-actions">
               <Link className="button" href="/signup">Build my plan <ArrowRight size={18}/></Link>
-              <Link className="button button-outline" href="/about">How it works</Link>
+              <Link className="button button-outline" href="/how-it-works">How it works</Link>
             </div>
             <p className="small muted">Start with your personal email. Built for UT Dallas today.</p>
             <div className="campus-affiliation"><img src="/campus-utd-wordmark.svg" alt="The University of Texas at Dallas" width="286" height="49"/><span>Independent student guide.<br/>Not affiliated with or endorsed by UT Dallas.</span></div><div className="hero-proof">
@@ -38,7 +38,7 @@ export default function Home() {
           <p className="eyebrow">LESS SEARCHING. MORE SETTLING IN.</p>
           <h2>A plan built around<br/>your starting point.</h2>
           <p>You don’t have to figure out everything today. CampusBridge helps you find the right step and the right support.</p>
-          <Link className="inline-link" href="/about">How CampusBridge works <ArrowRight size={18}/></Link>
+          <Link className="inline-link" href="/how-it-works">How CampusBridge works <ArrowRight size={18}/></Link>
         </div>
         <div className="benefit-grid">{[
           [Compass, 'Tell us your situation', 'A few questions about your arrival, home, and how you plan to get around.'],

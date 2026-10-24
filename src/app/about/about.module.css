@@ -1,0 +1,52 @@
+.page {
+  padding-block: 64px 88px;
+  min-height: 70vh;
+}
+
+.page h1 {
+  margin: 0 0 40px;
+  font-size: clamp(36px, 5vw, 52px);
+}
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.team figure { margin: 0; }
+
+.portrait {
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f1edf3;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.team figcaption {
+  margin-top: 18px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1000px) {
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }
+}
+
+@media (max-width: 520px) {
+  .page { padding-block: 36px 56px; }
+  .page h1 { margin-bottom: 28px; }
+  .team { grid-template-columns: 1fr; max-width: 330px; margin-inline: auto; gap: 34px; }
+}

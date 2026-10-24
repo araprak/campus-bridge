@@ -1,0 +1,33 @@
+name: Release notes
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate versions and feature release notes
+        env:
+          RELEASE_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -n "$RELEASE_BASE" ] && [ "$RELEASE_BASE" != "0000000000000000000000000000000000000000" ]; then
+            node scripts/check-releases.mjs --base "$RELEASE_BASE"
+          else
+            node scripts/check-releases.mjs
+          fi
