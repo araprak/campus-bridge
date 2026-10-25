@@ -1,3 +1,7 @@
+## v1.1.0 — Earlier change log (October 24, 2026)
+
+[Version history](https://campusbridgeguide.com/releases) now links all ten historical groups from the supplied change-log worksheet, covering 113 entries from September 24–October 22. Each group opens its own GitHub document. The [historical index](docs/history/README.md) preserves the source's statuses, date windows, verification worksheet and limitations. The two-part labels remain editorial groupings; the three-part versioned release records continue separately. The approved About page is unchanged. See [v1.1.0 release notes](docs/releases/v1.1.0.md).
+
 ## v1.0.0 — Team About page and version history (October 24, 2026)
 
 The [About page](https://campusbridgeguide.com/about) shows the four team members’ photos and names. The existing explanation now lives at [How it works](https://campusbridgeguide.com/how-it-works). [Version history](https://campusbridgeguide.com/releases) links each version directly to its release document on GitHub, beginning with [v1.0.0](docs/releases/v1.0.0.md).

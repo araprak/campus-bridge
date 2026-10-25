@@ -1,0 +1,148 @@
+[
+  {
+    "label": "v2.3",
+    "title": "Future roadmap and verification backlog",
+    "period": "October 22, 2026",
+    "notesPath": "docs/history/v2.3.md",
+    "count": 8,
+    "statuses": [
+      {
+        "status": "PROPOSED",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "label": "v2.2",
+    "title": "Transportation and service-guidance enhancements",
+    "period": "October 2026; latest requirements before October 22",
+    "notesPath": "docs/history/v2.2.md",
+    "count": 10,
+    "statuses": [
+      {
+        "status": "PROPOSED",
+        "count": 10
+      }
+    ]
+  },
+  {
+    "label": "v2.1",
+    "title": "Authentication, privacy, and account lifecycle",
+    "period": "October 2026; latest status to cross-check",
+    "notesPath": "docs/history/v2.1.md",
+    "count": 10,
+    "statuses": [
+      {
+        "status": "REPORTED COMPLETE",
+        "count": 2
+      },
+      {
+        "status": "REPORTED",
+        "count": 6
+      },
+      {
+        "status": "PROPOSED",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "label": "v2.0",
+    "title": "Core logic and task-management stabilization",
+    "period": "October 2026; audit/refinement window",
+    "notesPath": "docs/history/v2.0.md",
+    "count": 11,
+    "statuses": [
+      {
+        "status": "ISSUE / QA",
+        "count": 3
+      },
+      {
+        "status": "PROPOSED",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "label": "v1.4",
+    "title": "Google Maps Housing Explorer integration specification",
+    "period": "October 2026; exact request date to verify",
+    "notesPath": "docs/history/v1.4.md",
+    "count": 12,
+    "statuses": [
+      {
+        "status": "PROPOSED",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "label": "v1.3",
+    "title": "Housing comparison and rating design iteration",
+    "period": "October 8, 2026",
+    "notesPath": "docs/history/v1.3.md",
+    "count": 11,
+    "statuses": [
+      {
+        "status": "REQUESTED",
+        "count": 10
+      },
+      {
+        "status": "PROPOSED",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "label": "v1.2",
+    "title": "Expanded customer-journey feedback and usability requests",
+    "period": "October 6–7, 2026",
+    "notesPath": "docs/history/v1.2.md",
+    "count": 14,
+    "statuses": [
+      {
+        "status": "REQUESTED",
+        "count": 14
+      }
+    ]
+  },
+  {
+    "label": "v1.1",
+    "title": "Immediate post-deployment personalization requests",
+    "period": "September 28, 2026",
+    "notesPath": "docs/history/v1.1.md",
+    "count": 12,
+    "statuses": [
+      {
+        "status": "REQUESTED",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "label": "v1.0",
+    "title": "First website reported deployed",
+    "period": "By September 28, 2026",
+    "notesPath": "docs/history/v1.0.md",
+    "count": 12,
+    "statuses": [
+      {
+        "status": "REPORTED",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "label": "v0.1",
+    "title": "Initial website blueprint / pre-launch specification",
+    "period": "September 24, 2026",
+    "notesPath": "docs/history/v0.1.md",
+    "count": 13,
+    "statuses": [
+      {
+        "status": "BASELINE",
+        "count": 13
+      }
+    ]
+  }
+]

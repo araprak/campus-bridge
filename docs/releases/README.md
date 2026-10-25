@@ -14,6 +14,8 @@ The application version in `package.json` and both root version fields in `packa
 
 v1.0.0 dated October 24, 2026 begins this formal versioned history. Historical v0.1–v2.3 labels were request-period groupings. Do not convert them into releases or infer launch dates.
 
+The [earlier change log](../history/README.md) preserves the supplied historical worksheet separately. Its website entries come from `src/data/historical-changes.json` and link to `docs/history/vX.Y.md`. Preserve original IDs, statuses and recorded date wording. A requested, proposed or reported item is not a fresh verification result. Release validation checks these links and entry/status counts as well.
+
 ## Required for each release
 
 1. Finish only the approved feature or fix and verify its actual behavior.

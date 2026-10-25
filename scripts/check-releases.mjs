@@ -79,6 +79,37 @@ try {
     }
   }
 
+  const history = json('src/data/historical-changes.json');
+  requireThat(Array.isArray(history) && history.length > 0, 'Historical change log must contain groups.');
+  const historicalLabels = new Set();
+  const historicalIds = new Set();
+  const allowedStatuses = new Set(['BASELINE', 'REPORTED', 'REQUESTED', 'ISSUE / QA', 'PROPOSED', 'REPORTED COMPLETE']);
+  const historyIndex = read('docs/history/README.md');
+  for (const group of history) {
+    requireThat(/^v\d+\.\d+$/.test(group.label) && !historicalLabels.has(group.label), 'Historical labels must be unique two-part review labels.');
+    historicalLabels.add(group.label);
+    requireThat(nonempty(group.title) && nonempty(group.period), `${group.label} needs its recorded title and period.`);
+    requireThat(group.notesPath === `docs/history/${group.label}.md`, `${group.label} must link to its historical document.`);
+    requireThat(historyIndex.includes(`[${group.label}](${group.label}.md)`), `${group.label} is missing from the historical index.`);
+    const notes = read(group.notesPath);
+    requireThat(notes.includes(`Recorded date or request window: ${group.period}`), `${group.label} must retain its recorded date wording.`);
+    const rows = notes.split(/\r?\n/).filter(line => /^\| CB-/.test(line));
+    requireThat(Number.isInteger(group.count) && group.count > 0 && rows.length === group.count, `${group.label} entry count must match its document.`);
+    const counts = new Map();
+    for (const row of rows) {
+      const cells = row.split('|').map(cell => cell.trim());
+      const [id, status] = [cells[1], cells[2]];
+      const prefix = `CB-${group.label.slice(1)}-`;
+      requireThat(id.startsWith(prefix) && /^CB-\d+\.\d+-\d{2}$/.test(id) && !historicalIds.has(id), `${group.label} has an invalid or duplicate change ID.`);
+      historicalIds.add(id);
+      requireThat(allowedStatuses.has(status) && nonempty(cells[3]), `${id} needs its recorded status and description.`);
+      counts.set(status, (counts.get(status) || 0) + 1);
+    }
+    requireThat(Array.isArray(group.statuses) && group.statuses.length === counts.size && new Set(group.statuses.map(item => item.status)).size === counts.size, `${group.label} needs each recorded status count once.`);
+    for (const item of group.statuses) requireThat(counts.get(item.status) === item.count, `${group.label} status counts must match its document.`);
+  }
+  console.log(`Historical checks passed: ${history.length} groups; ${historicalIds.size} unique entries.`);
+
   const latest = releases[0].version;
   const pkg = json('package.json');
   const lock = json('package-lock.json');

@@ -1,4 +1,5 @@
 import { PublicHeader, Footer } from '@/components/brand';
+import historicalChanges from '@/data/historical-changes.json';
 import releases from '@/data/releases.json';
 import styles from './releases.module.css';
 
@@ -41,6 +42,34 @@ export default function VersionHistory() {
           </article>
         </li>)}
       </ol>
+      <section className={styles.history} aria-labelledby="earlier-change-log">
+        <p className="eyebrow">PROJECT RECORD</p>
+        <h2 id="earlier-change-log">Earlier change log</h2>
+        <p className={styles.historyIntro}>113 recorded entries in 10 historical groups, covering September 24–October 22, 2026. From the review copy dated October 23, 2026.</p>
+        <p className={styles.historyContext}>These labels are historical groupings, not verified release versions. Original statuses are preserved; proposed and requested entries do not indicate shipped features.</p>
+        <a className={styles.sourceLink} href="https://github.com/araprak/campus-bridge/blob/main/docs/history/README.md">Read the source index on GitHub<span aria-hidden="true"> ↗</span></a>
+        <ol className={styles.historyGroups}>
+          {historicalChanges.map(group => <li key={group.label}>
+            <article className={styles.historyGroup} aria-labelledby={`history-${group.label}`}>
+              <div className={styles.historyMeta}>
+                <h3 id={`history-${group.label}`}>
+                  <a href={`https://github.com/araprak/campus-bridge/blob/main/${group.notesPath}`}>
+                    {group.label}<span aria-hidden="true"> ↗</span>
+                  </a>
+                </h3>
+                <span>{group.count} recorded entries</span>
+              </div>
+              <p className={styles.historyTitle}>{group.title}</p>
+              <p className={styles.period}>{group.period}</p>
+              <ul className={styles.statuses} aria-label="Original entry statuses">
+                {group.statuses.map(item => <li key={item.status}>
+                  {item.status} <span aria-hidden="true">·</span> {item.count}
+                </li>)}
+              </ul>
+            </article>
+          </li>)}
+        </ol>
+      </section>
     </main>
     <Footer/>
   </>;
