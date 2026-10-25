@@ -1,3 +1,7 @@
+## v1.1.1 — Owner confirmation of historical items (October 24, 2026)
+
+All 113 historical items now show implemented and verified, based on the project owner’s direct October 24 confirmation. The website and each historical document display this current status separately from the preserved original worksheet record. See [v1.1.1 notes](docs/releases/v1.1.1.md).
+
 ## v1.1.0 — Earlier change log (October 24, 2026)
 
 [Version history](https://campusbridgeguide.com/releases) now links all ten historical groups from the supplied change-log worksheet, covering 113 entries from September 24–October 22. Each group opens its own GitHub document. The [historical index](docs/history/README.md) preserves the source's statuses, date windows, verification worksheet and limitations. The two-part labels remain editorial groupings; the three-part versioned release records continue separately. The approved About page is unchanged. See [v1.1.0 release notes](docs/releases/v1.1.0.md).

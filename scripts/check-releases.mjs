@@ -81,6 +81,9 @@ try {
 
   const history = json('src/data/historical-changes.json');
   requireThat(Array.isArray(history) && history.length > 0, 'Historical change log must contain groups.');
+  const confirmation = json('src/data/historical-verification.json');
+  requireThat(confirmation.status === 'IMPLEMENTED AND VERIFIED' && confirmation.confirmedBy === 'Project owner', 'Historical confirmation must identify the owner and current status.');
+  requireThat(/^\d{4}-\d{2}-\d{2}$/.test(confirmation.confirmedOn) && new Date(`${confirmation.confirmedOn}T00:00:00Z`).toISOString().slice(0, 10) === confirmation.confirmedOn, 'Historical confirmation needs its valid date.');
   const historicalLabels = new Set();
   const historicalIds = new Set();
   const allowedStatuses = new Set(['BASELINE', 'REPORTED', 'REQUESTED', 'ISSUE / QA', 'PROPOSED', 'REPORTED COMPLETE']);
@@ -102,12 +105,14 @@ try {
       const prefix = `CB-${group.label.slice(1)}-`;
       requireThat(id.startsWith(prefix) && /^CB-\d+\.\d+-\d{2}$/.test(id) && !historicalIds.has(id), `${group.label} has an invalid or duplicate change ID.`);
       historicalIds.add(id);
-      requireThat(allowedStatuses.has(status) && nonempty(cells[3]), `${id} needs its recorded status and description.`);
+      requireThat(allowedStatuses.has(status) && nonempty(cells[4]), `${id} needs its original status and description.`);
+      requireThat(cells[3] === `Implemented and verified — owner confirmed ${confirmation.confirmedOn}`, `${id} needs the current owner-confirmed status and date.`);
       counts.set(status, (counts.get(status) || 0) + 1);
     }
     requireThat(Array.isArray(group.statuses) && group.statuses.length === counts.size && new Set(group.statuses.map(item => item.status)).size === counts.size, `${group.label} needs each recorded status count once.`);
     for (const item of group.statuses) requireThat(counts.get(item.status) === item.count, `${group.label} status counts must match its document.`);
   }
+  requireThat(confirmation.entryCount === historicalIds.size, 'Owner confirmation must cover the historical entry count.');
   console.log(`Historical checks passed: ${history.length} groups; ${historicalIds.size} unique entries.`);
 
   const latest = releases[0].version;
