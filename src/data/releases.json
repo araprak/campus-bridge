@@ -1,45 +1,193 @@
 [
   {
-    "version": "1.1.1",
+    "version": "2.4.0",
+    "label": "v2.4.0",
+    "kind": "release",
     "date": "2026-10-24",
-    "title": "Record owner verification of all historical items",
-    "notesPath": "docs/releases/v1.1.1.md",
+    "title": "One continuous CampusBridge version history",
+    "notesPath": "docs/releases/v2.4.0.md",
     "features": [
       {
-        "title": "Verified historical items",
-        "summary": "All 113 historical items now show implemented and verified, based on the project owner’s October 24 confirmation. Original worksheet statuses remain available as history."
+        "title": "Unified version history",
+        "summary": "Read one continuous timeline from v0.1 through v2.4.0, with the latest update continuing after v2.3."
+      },
+      {
+        "title": "Team About page",
+        "summary": "See the four team members’ supplied photos and names on the approved About page."
+      },
+      {
+        "title": "Linked release documents",
+        "summary": "Open every version directly on GitHub and keep per-feature release notes with each future update."
+      },
+      {
+        "title": "Verified change-log entries",
+        "summary": "All 113 original entries remain available with implemented and verified status from the project owner’s October 24 confirmation."
+      }
+    ]
+  },
+  {
+    "version": "2.3.0",
+    "label": "v2.3",
+    "kind": "historical",
+    "title": "Future roadmap and verification backlog",
+    "period": "October 22, 2026",
+    "notesPath": "docs/history/v2.3.md",
+    "count": 8,
+    "statuses": [
+      {
+        "status": "PROPOSED",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "version": "2.2.0",
+    "label": "v2.2",
+    "kind": "historical",
+    "title": "Transportation and service-guidance enhancements",
+    "period": "October 2026; latest requirements before October 22",
+    "notesPath": "docs/history/v2.2.md",
+    "count": 10,
+    "statuses": [
+      {
+        "status": "PROPOSED",
+        "count": 10
+      }
+    ]
+  },
+  {
+    "version": "2.1.0",
+    "label": "v2.1",
+    "kind": "historical",
+    "title": "Authentication, privacy, and account lifecycle",
+    "period": "October 2026; latest status to cross-check",
+    "notesPath": "docs/history/v2.1.md",
+    "count": 10,
+    "statuses": [
+      {
+        "status": "REPORTED COMPLETE",
+        "count": 2
+      },
+      {
+        "status": "REPORTED",
+        "count": 6
+      },
+      {
+        "status": "PROPOSED",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "version": "2.0.0",
+    "label": "v2.0",
+    "kind": "historical",
+    "title": "Core logic and task-management stabilization",
+    "period": "October 2026; audit/refinement window",
+    "notesPath": "docs/history/v2.0.md",
+    "count": 11,
+    "statuses": [
+      {
+        "status": "ISSUE / QA",
+        "count": 3
+      },
+      {
+        "status": "PROPOSED",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "version": "1.4.0",
+    "label": "v1.4",
+    "kind": "historical",
+    "title": "Google Maps Housing Explorer integration specification",
+    "period": "October 2026; exact request date to verify",
+    "notesPath": "docs/history/v1.4.md",
+    "count": 12,
+    "statuses": [
+      {
+        "status": "PROPOSED",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "version": "1.3.0",
+    "label": "v1.3",
+    "kind": "historical",
+    "title": "Housing comparison and rating design iteration",
+    "period": "October 8, 2026",
+    "notesPath": "docs/history/v1.3.md",
+    "count": 11,
+    "statuses": [
+      {
+        "status": "REQUESTED",
+        "count": 10
+      },
+      {
+        "status": "PROPOSED",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "version": "1.2.0",
+    "label": "v1.2",
+    "kind": "historical",
+    "title": "Expanded customer-journey feedback and usability requests",
+    "period": "October 6–7, 2026",
+    "notesPath": "docs/history/v1.2.md",
+    "count": 14,
+    "statuses": [
+      {
+        "status": "REQUESTED",
+        "count": 14
       }
     ]
   },
   {
     "version": "1.1.0",
-    "date": "2026-10-24",
-    "title": "Read the earlier CampusBridge change log",
-    "notesPath": "docs/releases/v1.1.0.md",
-    "features": [
+    "label": "v1.1",
+    "kind": "historical",
+    "title": "Immediate post-deployment personalization requests",
+    "period": "September 28, 2026",
+    "notesPath": "docs/history/v1.1.md",
+    "count": 12,
+    "statuses": [
       {
-        "title": "Earlier change log",
-        "summary": "Browse all 113 recorded changes across ten historical groups, with direct GitHub documents and their original statuses and date windows."
+        "status": "REQUESTED",
+        "count": 12
       }
     ]
   },
   {
     "version": "1.0.0",
-    "date": "2026-10-24",
-    "title": "Meet the team and follow product updates",
-    "notesPath": "docs/releases/v1.0.0.md",
-    "features": [
+    "label": "v1.0",
+    "kind": "historical",
+    "title": "First website reported deployed",
+    "period": "By September 28, 2026",
+    "notesPath": "docs/history/v1.0.md",
+    "count": 12,
+    "statuses": [
       {
-        "title": "About the team",
-        "summary": "See the CampusBridge team’s photos and names on the About page."
-      },
+        "status": "REPORTED",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "version": "0.1.0",
+    "label": "v0.1",
+    "kind": "historical",
+    "title": "Initial website blueprint / pre-launch specification",
+    "period": "September 24, 2026",
+    "notesPath": "docs/history/v0.1.md",
+    "count": 13,
+    "statuses": [
       {
-        "title": "Linked version history",
-        "summary": "Open a version number to read its full release notes on GitHub."
-      },
-      {
-        "title": "Release notes for every feature",
-        "summary": "Each future feature update will include a new version and notes explaining what changed."
+        "status": "BASELINE",
+        "count": 13
       }
     ]
   }

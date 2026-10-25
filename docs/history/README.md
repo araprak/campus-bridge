@@ -1,29 +1,14 @@
-# CampusBridge historical change log
+# CampusBridge source worksheet reference
 
 September 24–October 22, 2026 · Review copy dated October 23, 2026.
 
-This archive transcribes all 113 numbered entries from the supplied CampusBridge_Change_Log.docx into ten linked historical groups. It preserves the original entry IDs, descriptions, statuses, and date wording.
+This source reference accompanies the [single CampusBridge version history](../releases/README.md). The ten original groups preserve all 113 numbered entries from CampusBridge_Change_Log.docx, including their IDs, descriptions, recorded statuses, and date wording.
 
 **Current status: all 113 historical items are implemented and verified, confirmed directly by the project owner on October 24, 2026.** Each group document now includes that current status for every entry.
 
 The labels v0.1–v2.3 remain editorial review groupings rather than deployment tags. Original titles, statuses and dates describe the earlier worksheet. Its cross-check fields were blank; the current status comes from the owner’s later confirmation. That confirmation does not assign historical ship dates or retroactively certify these labels as releases.
 
-The separately published three-part releases, beginning with v1.0.0, are available on [Version history](https://campusbridgeguide.com/releases). The historical v1.0 grouping below is distinct from release v1.0.0.
-
-## Historical index
-
-| Label | Recorded date or request window | Editorial milestone | Entries |
-| --- | --- | --- | --- |
-| [v0.1](v0.1.md) | September 24, 2026 | Initial website blueprint / pre-launch specification | 13 |
-| [v1.0](v1.0.md) | By September 28, 2026 | First website reported deployed | 12 |
-| [v1.1](v1.1.md) | September 28, 2026 | Immediate post-deployment personalization requests | 12 |
-| [v1.2](v1.2.md) | October 6–7, 2026 | Expanded customer-journey feedback and usability requests | 14 |
-| [v1.3](v1.3.md) | October 8, 2026 | Housing comparison and rating design iteration | 11 |
-| [v1.4](v1.4.md) | October 2026; exact request date to verify | Google Maps Housing Explorer integration specification | 12 |
-| [v2.0](v2.0.md) | October 2026; audit/refinement window | Core logic and task-management stabilization | 11 |
-| [v2.1](v2.1.md) | October 2026; latest status to cross-check | Authentication, privacy, and account lifecycle | 10 |
-| [v2.2](v2.2.md) | October 2026; latest requirements before October 22 | Transportation and service-guidance enhancements | 10 |
-| [v2.3](v2.3.md) | October 22, 2026 | Future roadmap and verification backlog | 8 |
+[Open the complete version index](../releases/README.md) for every version, including the October 24 updates consolidated as v2.4.0. The earlier October 24 document links remain available at their original URLs.
 
 ## Status definitions from the source
 

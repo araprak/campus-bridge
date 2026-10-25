@@ -10,13 +10,21 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## CampusBridge release notes
 
-Every new feature must ship with release notes. Follow `docs/releases/README.md`:
-bump the application version, add a document under `docs/releases/`, and prepend
-its entry with a note for each feature to `src/data/releases.json`. Keep older
-release documents and entries available. Version numbers on `/releases` must
-link directly to the matching GitHub document. Run `npm run check:releases`
-before publishing, and use its base comparison for a feature change.
+Every new feature must ship with release notes. Follow `docs/releases/README.md`.
+`src/data/releases.json` is the single version timeline for the website and GitHub
+index. Continue after its latest version; do not restart numbering or create a
+second history section. Add a `kind: "release"` entry, a matching document under
+`docs/releases/`, and a separate note for every feature. Bump package versions
+and run `npm run check:releases` before publishing, including its base comparison
+for product changes. Every version number must link directly to its GitHub document.
 
-Historical labels v0.1–v2.3 in planning materials are request groupings, not
-verified release tags or release dates. Do not turn proposed backlog items into
-release claims. Do not add further feature sets without a new user request.
+Keep earlier canonical entries and source documents available. Original two-part
+labels v0.1–v2.3 retain their recorded periods; their internal three-part versions
+are ordering values and do not establish deployment tags or exact ship dates.
+All 113 items carry the project owner’s October 24 implementation and verification
+confirmation. Preserve that attribution and the earlier worksheet record.
+
+The superseded October 24 labels v1.0.0, v1.1.0, and v1.1.1 are consolidated under
+v2.4.0. Their original documents and metadata in `docs/releases/legacy-records.json`
+remain available to keep links working; do not publish them as a separate timeline.
+Do not add further feature sets without a new user request.

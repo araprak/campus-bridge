@@ -1,16 +1,8 @@
-## v1.1.1 — Owner confirmation of historical items (October 24, 2026)
+## v2.4.0 — One continuous version history (October 24, 2026)
 
-All 113 historical items now show implemented and verified, based on the project owner’s direct October 24 confirmation. The website and each historical document display this current status separately from the preserved original worksheet record. See [v1.1.1 notes](docs/releases/v1.1.1.md).
+[Version history](https://campusbridgeguide.com/releases) now has one timeline: v2.4.0, followed by v2.3 through v0.1. The [GitHub version index](docs/releases/README.md) matches it, and each version opens its own document directly. This consolidates the October 24 About page, linked release documents, full 113-entry change log, and owner-confirmed implemented-and-verified status. The approved About page and team photographs are unchanged.
 
-## v1.1.0 — Earlier change log (October 24, 2026)
-
-[Version history](https://campusbridgeguide.com/releases) now links all ten historical groups from the supplied change-log worksheet, covering 113 entries from September 24–October 22. Each group opens its own GitHub document. The [historical index](docs/history/README.md) preserves the source's statuses, date windows, verification worksheet and limitations. The two-part labels remain editorial groupings; the three-part versioned release records continue separately. The approved About page is unchanged. See [v1.1.0 release notes](docs/releases/v1.1.0.md).
-
-## v1.0.0 — Team About page and version history (October 24, 2026)
-
-The [About page](https://campusbridgeguide.com/about) shows the four team members’ photos and names. The existing explanation now lives at [How it works](https://campusbridgeguide.com/how-it-works). [Version history](https://campusbridgeguide.com/releases) links each version directly to its release document on GitHub, beginning with [v1.0.0](docs/releases/v1.0.0.md).
-
-Every future feature needs a version and release notes covering each user-facing change. Follow the [release process](docs/releases/README.md); the build validates release records and the GitHub check requires a new version for product changes. Older planning labels remain request groupings, not retroactively assigned release versions.
+The October 24 labels v1.0.0, v1.1.0, and v1.1.1 are superseded by v2.4.0. Their original GitHub documents remain available at the same URLs. Original historical periods are retained where exact release dates were not recorded. See [v2.4.0 release notes](docs/releases/v2.4.0.md) and the [release process](docs/releases/README.md). Every future feature must have release notes and continue the current numbering.
 
 ## Reviews update — live (October 20, 2026)
 

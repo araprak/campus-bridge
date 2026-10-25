@@ -14,7 +14,25 @@
   max-width: 660px;
   color: #516875;
   font-size: 17px;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
+}
+
+.confirmation {
+  max-width: 740px;
+  padding: 16px 18px;
+  margin: 0 0 16px;
+  border-left: 3px solid #24664f;
+  background: #edf8f3;
+  border-radius: 0 8px 8px 0;
+  color: #245d49;
+  font-size: 14px;
+}
+
+.context {
+  max-width: 700px;
+  color: #516875;
+  font-size: 13px;
+  margin-bottom: 32px;
 }
 
 .releases {
@@ -24,6 +42,8 @@
   display: grid;
   gap: 24px;
 }
+
+.releases > li { scroll-margin-top: 24px; }
 
 .release {
   background: var(--white);
@@ -53,17 +73,17 @@
   text-underline-offset: 5px;
 }
 
-.meta a:hover {
-  color: var(--navy);
-}
+.meta a:hover { color: var(--navy); }
 
-.meta time {
+.period {
+  max-width: 440px;
   margin-left: auto;
   color: #516875;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-.latest {
+.latest,
+.verified > span:first-child {
   color: #24664f;
   background: #edf8f3;
   border: 1px solid #c7e2d5;
@@ -85,9 +105,7 @@
   gap: 18px;
 }
 
-.features li::marker {
-  color: var(--teal);
-}
+.features li::marker { color: var(--teal); }
 
 .features h3 {
   font-size: 15px;
@@ -100,138 +118,25 @@
   margin-bottom: 0;
 }
 
-.history {
-  margin-top: 64px;
-  padding-top: 40px;
-  border-top: 1px solid var(--line);
-}
-
-.history > h2 {
-  margin: 0 0 16px;
-  font-size: clamp(27px, 4vw, 34px);
-  letter-spacing: -1px;
-}
-
-.historyIntro,
-.historyContext {
-  max-width: 700px;
-  color: #516875;
-  font-size: 15px;
-}
-
-.historyIntro {
-  margin-bottom: 12px;
-}
-
-.historyContext {
-  margin-bottom: 16px;
-}
-
-.historyConfirmation {
-  max-width: 700px;
-  padding: 16px 18px;
-  margin: 20px 0 16px;
-  border-left: 3px solid #24664f;
-  background: #edf8f3;
-  border-radius: 0 8px 8px 0;
-  color: #245d49;
-  font-size: 15px;
-}
-
-.sourceLink,
-.historyMeta a {
-  color: var(--teal);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.sourceLink:hover,
-.historyMeta a:hover {
-  color: var(--navy);
-}
-
-.sourceLink {
-  display: inline-block;
-  padding: 5px 0;
-  font-size: 14px;
-  margin-bottom: 24px;
-}
-
-.historyGroups {
-  display: grid;
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.historyGroup {
-  padding: 24px 28px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--white);
-}
-
-.historyMeta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-}
-
-.historyMeta h3 {
-  margin: 0;
-  font-size: 23px;
-  letter-spacing: -.5px;
-}
-
-.historyMeta a {
-  display: inline-block;
-  padding: 5px 0;
-}
-
-.historyMeta > span,
-.period {
-  color: #516875;
-  font-size: 13px;
-}
-
-.historyTitle {
-  margin: 4px 0 8px;
-  font-size: 17px;
-  font-weight: 600;
-}
-
 .verified {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 12px;
-  margin: 12px 0 20px;
+  margin: 16px 0 20px;
   font-size: 12px;
   color: #516875;
 }
 
-.verified > span:first-child {
-  color: #24664f;
-  background: #edf8f3;
-  border: 1px solid #c7e2d5;
-  border-radius: 20px;
-  padding: 4px 10px;
-  font-size: 11px;
-  font-weight: 650;
-}
+.verified > span:first-child { font-size: 11px; }
 
-.originalLabel {
+.sourceLabel {
   margin: 0;
   color: #516875;
   font-size: 12px;
 }
 
-.period {
-  margin: 0 0 16px;
-}
+.sourceLabel + .title { margin-top: 4px; }
 
 .originalStatuses {
   border-top: 1px solid var(--line);
@@ -245,9 +150,7 @@
   padding: 4px 0;
 }
 
-.originalStatuses[open] summary {
-  margin-bottom: 8px;
-}
+.originalStatuses[open] summary { margin-bottom: 8px; }
 
 .statuses {
   display: flex;
@@ -269,25 +172,7 @@
 }
 
 @media (max-width: 540px) {
-  .page {
-    padding: 38px 22px 60px;
-  }
-
-  .release {
-    padding: 23px 20px;
-  }
-
-  .meta time {
-    flex-basis: 100%;
-    margin-left: 0;
-  }
-
-  .history {
-    margin-top: 44px;
-    padding-top: 32px;
-  }
-
-  .historyGroup {
-    padding: 20px;
-  }
+  .page { padding: 38px 22px 60px; }
+  .release { padding: 23px 20px; }
+  .period { flex-basis: 100%; margin-left: 0; }
 }
