@@ -1,5 +1,19 @@
 [
   {
+    "version": "2.5.1",
+    "label": "v2.5.1",
+    "kind": "release",
+    "date": "2026-10-25",
+    "title": "Keep map fallback usable after closing",
+    "notesPath": "docs/releases/v2.5.1.md",
+    "features": [
+      {
+        "title": "Map failure and pause resilience",
+        "summary": "Ignore delayed map resize work after the map container is removed, keeping the housing list and other group tools usable when Google Maps fails or is paused."
+      }
+    ]
+  },
+  {
     "version": "2.5.0",
     "label": "v2.5.0",
     "kind": "release",

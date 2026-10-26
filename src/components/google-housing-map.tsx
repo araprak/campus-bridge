@@ -65,7 +65,9 @@ function MapCamera({ points, boundsKey, selected, selectionRevision }: { points:
     if (!map || !core) return;
     // Mobile keeps this map mounted while the list is visible. Google ignores
     // fitBounds at 0x0, so retain the latest intent until the map has a size.
-    const { width, height } = map.getDiv().getBoundingClientRect();
+    const container = map.getDiv();
+    if (!container?.isConnected) return;
+    const { width, height } = container.getBoundingClientRect();
     if (!width || !height || !pendingCamera.current) return;
     const intent = pendingCamera.current;
     pendingCamera.current = null;
@@ -97,9 +99,13 @@ function MapCamera({ points, boundsKey, selected, selectionRevision }: { points:
   }, [applyPendingCamera, selected?.id, selectionRevision]);
   useEffect(() => {
     if (!map) return;
+    const container = map.getDiv();
+    if (!container?.isConnected) return;
+    let active = true;
     let wasVisible = false;
     const observer = new ResizeObserver(() => {
-      const { width, height } = map.getDiv().getBoundingClientRect();
+      if (!active || !container.isConnected || map.getDiv() !== container) return;
+      const { width, height } = container.getBoundingClientRect();
       const visible = width > 0 && height > 0;
       if (visible) {
         // Re-layout existing tiles without creating a new billable map or
@@ -109,8 +115,8 @@ function MapCamera({ points, boundsKey, selected, selectionRevision }: { points:
       }
       wasVisible = visible;
     });
-    observer.observe(map.getDiv());
-    return () => observer.disconnect();
+    observer.observe(container);
+    return () => { active = false; observer.disconnect(); };
   }, [map, applyPendingCamera]);
   return null;
 }

@@ -1,3 +1,7 @@
+## v2.5.1 — Map fallback cleanup (October 25, 2026)
+
+Delayed map resize callbacks stop after the map is removed or paused. This keeps the housing list and other group tools usable when Google rejects a map origin. See [v2.5.1 notes](docs/releases/v2.5.1.md). Google map key permissions still need a signed-in check on the new production group hostname.
+
 ## v2.5.0 — Group A and Group B tools (October 25, 2026)
 
 [Group A](https://grp-a.campusbridgeguide.com) receives Maps, Transportation and arrival, and Campus expansion/premium research. [Group B](https://grp-b.campusbridgeguide.com) receives Expenses and budgeting, Helpful reminders, and Accessibility/trust. Both keep the existing CampusBridge foundation and account-backed plan. The About page now has one journey paragraph before the team photos.
