@@ -16,6 +16,6 @@ export default async function Account() {
     <p className="eyebrow">YOUR ACCOUNT</p><h1>Account settings</h1>
     <p>Signed in as {user.email}</p>
     <Link className="back-link" href="/dashboard">Back to my plan</Link>
-    <DeleteAccount comparisonKey={comparisonSessionKey('account', user.id)}/>
+    <DeleteAccount comparisonKey={comparisonSessionKey('account', user.id)} accountId={user.id}/>
   </main><Footer/></>;
 }

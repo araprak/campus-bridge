@@ -28,3 +28,14 @@ The superseded October 24 labels v1.0.0, v1.1.0, and v1.1.1 are consolidated und
 v2.4.0. Their original documents and metadata in `docs/releases/legacy-records.json`
 remain available to keep links working; do not publish them as a separate timeline.
 Do not add further feature sets without a new user request.
+
+## Group sites
+
+The owner assigned new feature sets 3/5/12 to Group A and 6/8/9 to Group B.
+Use exact server-side host recognition in `src/domain/site-groups.ts`; never
+select a group from a query string or untrusted forwarded host. The groups share
+baseline accounts and plans; new tools are scoped to their assigned subdomain.
+Keep `/group-tools` protected and unavailable on the main host. Preserve the
+single release manifest, with feature notes identifying their group. See
+`docs/group-sites/README.md`. Feature set 12 is research until a separate working
+campus or paid-service scope is explicitly approved.

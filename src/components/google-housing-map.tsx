@@ -16,6 +16,8 @@ type Props = {
   selectionRevision?: number;
   onSelectApartment: (id: string) => void;
   onViewDetails: (id: string) => void;
+  savedLayers?: HousingMapLayer[];
+  onLayersChange?: (layers: HousingMapLayer[]) => void;
 };
 type Point = { latitude: number; longitude: number };
 type AuthWindow = Window & { gm_authFailure?: () => void };
@@ -133,10 +135,10 @@ function LocationPopup({ location }: { location: HousingMapLocation }) {
   </div>;
 }
 
-function MapContent({ apartments, searchCenter, selectedId, selectionRevision, onSelectApartment, onViewDetails, mapId, failed }: Props & { mapId: string; failed: boolean }) {
+function MapContent({ apartments, searchCenter, selectedId, selectionRevision, onSelectApartment, onViewDetails, savedLayers, onLayersChange, mapId, failed }: Props & { mapId: string; failed: boolean }) {
   const status = useApiLoadingStatus();
   const legendId = useId();
-  const [layers, setLayers] = useState<HousingMapLayer[]>(initialLayers);
+  const [layers, setLayers] = useState<HousingMapLayer[]>(savedLayers ?? initialLayers);
   const [activeLocation, setActiveLocation] = useState<HousingMapLocation | null>(null);
   const [dismissedApartment, setDismissedApartment] = useState<string | null>(null);
   const [tilesLoaded, setTilesLoaded] = useState(false);
@@ -148,6 +150,7 @@ function MapContent({ apartments, searchCenter, selectedId, selectionRevision, o
   const points = [...plottedApartments, ...locations, ...(searchCenter ? [{ ...searchCenter, id: `zip-${searchCenter.zip}` }] : [])];
   // Parent filtering returns a fresh array; only a changed set of pins resets bounds.
   const boundsKey = points.map(point => `${point.id}:${point.latitude}:${point.longitude}`).sort().join('|');
+  useEffect(() => { onLayersChange?.(layers); }, [layers, onLayersChange]);
   useEffect(() => {
     setDismissedApartment(null);
     setActiveLocation(null);

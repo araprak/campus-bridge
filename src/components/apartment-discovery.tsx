@@ -16,10 +16,11 @@ import { HousingCostEstimator } from './housing-cost-estimator';
 import { useApartmentFavorites } from './use-apartment-favorites';
 import { HOUSING_ZIP_CENTERS, HOUSING_ZIP_SOURCE_PAGE, housingZipCenter, validateHousingZip } from '@/data/housing-zip-centers';
 import { housingDistanceMiles } from '@/domain/apartment-discovery';
-import { directionsUrl } from '@/domain/housing-map';
+import { directionsUrl, type HousingMapLayer } from '@/domain/housing-map';
 import type { LocationSave } from './local-setup';
+import groupAStyles from './group-a-tools.module.css';
 
-type Props = { answers: Answers; busy: boolean; onSave: LocationSave; comparisonKey: string | null };
+type Props = { answers: Answers; busy: boolean; onSave: LocationSave; comparisonKey: string | null; groupAEnhancements?: boolean };
 const GoogleHousingMap = dynamic(() => import('./google-housing-map'), { ssr: false, loading: () => <p role="status" className="housing-map-placeholder">Loading the map…</p> });
 const pageSize = 6;
 const communityById = (id: string) => APARTMENTS.find(a => a.id === id);
@@ -53,7 +54,7 @@ function TransitSummary({ apartment, arrivalDate }: { apartment: ApartmentOption
   return <><ul className="discovery-route-list">{transit.routes.map(route => <li key={route.id}><a href={route.url} target="_blank" rel="noopener noreferrer">{route.name} ↗</a></li>)}</ul><small>{transitScheduleNotice(arrivalDate, dallasDate()).text}</small></>;
 }
 
-export function HousingOptions({ answers, busy, onSave, comparisonKey }: Props) {
+export function HousingOptions({ answers, busy, onSave, comparisonKey, groupAEnhancements = false }: Props) {
   const [filters, setFilters] = useState<HousingFilters>({ ...DEFAULT_HOUSING_FILTERS });
   const favorites = useApartmentFavorites(comparisonKey);
   const [savedOnly, setSavedOnly] = useState(false);
@@ -65,6 +66,7 @@ export function HousingOptions({ answers, busy, onSave, comparisonKey }: Props) 
   const [activeApartmentId, setActiveApartmentId] = useState<string | null>(null);
   const [selectionRevision, setSelectionRevision] = useState(0);
   const [mapRequested, setMapRequested] = useState(false);
+  const [mapLayers, setMapLayers] = useState<HousingMapLayer[]>(['apartments', 'campus']);
   const [mobileView, setMobileView] = useState<'list' | 'map'>('list');
   const cardRefs = useRef(new Map<string, HTMLElement>());
   const mapPanel = useRef<HTMLElement>(null);
@@ -77,11 +79,11 @@ export function HousingOptions({ answers, busy, onSave, comparisonKey }: Props) 
   const filtersId = useId();
   useEffect(() => setLease(answers.leaseStartDate || ''), [answers.leaseStartDate]);
   useEffect(() => {
-    const sync = () => { const params = new URLSearchParams(window.location.search); const next = parseHousingFilters(params); setFilters(next); setZipInput(next.zip || ''); setZipError(params.has('housingZip') && !next.zip ? 'The ZIP in this link is unsupported. Showing the UTD search area.' : ''); if (next.zip || next.search || params.has('housingRadius')) setMapRequested(true); setLimit(pageSize); };
+    const sync = () => { const params = new URLSearchParams(window.location.search); const next = parseHousingFilters(params); setFilters(next); setZipInput(next.zip || ''); setZipError(params.has('housingZip') && !next.zip ? 'The ZIP in this link is unsupported. Showing the UTD search area.' : ''); if (!groupAEnhancements && (next.zip || next.search || params.has('housingRadius'))) setMapRequested(true); setLimit(pageSize); };
     sync();
     window.addEventListener('popstate', sync);
     return () => window.removeEventListener('popstate', sync);
-  }, []);
+  }, [groupAEnhancements]);
   useEffect(() => {
     setCompareIds([]);
     try { setCompareIds(readComparisonStorage(sessionStorage, comparisonKey)); } catch { /* Comparison still works in memory when storage is blocked. */ }
@@ -111,7 +113,7 @@ export function HousingOptions({ answers, busy, onSave, comparisonKey }: Props) 
   }
   function updateFilters(next: HousingFilters) {
     setFilters(next); setLimit(pageSize); setZipInput(next.zip || ''); setZipError('');
-    if (next.zip || next.search.trim()) setMapRequested(true);
+    if (!groupAEnhancements && (next.zip || next.search.trim())) setMapRequested(true);
     const query = serializeHousingFilters(next, window.location.search).toString();
     window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`);
   }
@@ -160,7 +162,7 @@ export function HousingOptions({ answers, busy, onSave, comparisonKey }: Props) 
     {favorites.loading && <p role="status">Loading saved apartments…</p>}
     {favorites.error && <p className="discovery-error" role="alert">{favorites.error} <button type="button" className="discovery-text-button" onClick={() => void favorites.refresh()}>Reload saved apartments</button></p>}
     <p className="discovery-notice" role="status">{favorites.notice}</p>
-    <form className="housing-zip-search" onSubmit={event => { event.preventDefault(); const result = validateHousingZip(zipInput); if (result.error) { setZipError(result.error); return; } updateFilters({ ...filters, zip: result.zip }); setMapRequested(true); }}><label htmlFor={`${filtersId}-zip`}>Search around a local ZIP<input id={`${filtersId}-zip`} inputMode="numeric" autoComplete="postal-code" maxLength={10} value={zipInput} placeholder="e.g. 75080" aria-invalid={!!zipError} aria-describedby={`${filtersId}-zip-help${zipError ? ` ${filtersId}-zip-error` : ''}`} onChange={event => { setZipInput(event.target.value); setZipError(''); }}/></label><button type="submit" className="button">Search ZIP & show map</button>{center && <button type="button" className="button button-outline" onClick={() => updateFilters({ ...filters, zip: undefined })}>Search from UTD</button>}</form>
+    <form className="housing-zip-search" onSubmit={event => { event.preventDefault(); const result = validateHousingZip(zipInput); if (result.error) { setZipError(result.error); return; } updateFilters({ ...filters, zip: result.zip }); if (!groupAEnhancements) setMapRequested(true); }}><label htmlFor={`${filtersId}-zip`}>Search around a local ZIP<input id={`${filtersId}-zip`} inputMode="numeric" autoComplete="postal-code" maxLength={10} value={zipInput} placeholder="e.g. 75080" aria-invalid={!!zipError} aria-describedby={`${filtersId}-zip-help${zipError ? ` ${filtersId}-zip-error` : ''}`} onChange={event => { setZipInput(event.target.value); setZipError(''); }}/></label><button type="submit" className="button">{groupAEnhancements ? 'Search ZIP' : 'Search ZIP & show map'}</button>{center && <button type="button" className="button button-outline" onClick={() => updateFilters({ ...filters, zip: undefined })}>Search from UTD</button>}</form>
     <p id={`${filtersId}-zip-help`} className="discovery-note">Supported local ZIPs: {HOUSING_ZIP_CENTERS.map(item => item.zip).join(', ')}. Uses an approximate <a href={HOUSING_ZIP_SOURCE_PAGE} target="_blank" rel="noopener noreferrer">2026 Census area reference point ↗</a>, not your street address. Searches our 30-community directory.</p>
     {zipError && <p id={`${filtersId}-zip-error`} className="discovery-error" role="alert">{zipError}</p>}
     <div className="housing-view-switch" aria-label="Housing explorer view"><button type="button" aria-pressed={mobileView === 'list'} onClick={() => setMobileView('list')}>List view</button><button type="button" aria-pressed={mobileView === 'map'} onClick={() => { setMobileView('map'); setMapRequested(true); }}>Map view</button></div>
@@ -168,7 +170,7 @@ export function HousingOptions({ answers, busy, onSave, comparisonKey }: Props) 
     <div className="housing-explorer-list" aria-label="Apartment listings and filters">
     <div className="discovery-controls">
       <label className="discovery-search" htmlFor={`${filtersId}-search`}>Search communities<input id={`${filtersId}-search`} type="search" placeholder="Name, city or ZIP" maxLength={120} value={filters.search} onChange={e => updateFilters({ ...filters, search: e.target.value })}/></label>
-      <label htmlFor={`${filtersId}-radius`}>Distance from {center ? `ZIP ${center.zip}` : 'UTD'}<select id={`${filtersId}-radius`} value={filters.radius} onChange={e => { updateFilters({ ...filters, radius: Number(e.target.value) as HousingFilters['radius'] }); setMapRequested(true); }}>{HOUSING_RADII.map(radius => <option key={radius} value={radius}>Within {radius} miles</option>)}</select></label>
+      <label htmlFor={`${filtersId}-radius`}>Distance from {center ? `ZIP ${center.zip}` : 'UTD'}<select id={`${filtersId}-radius`} value={filters.radius} onChange={e => { updateFilters({ ...filters, radius: Number(e.target.value) as HousingFilters['radius'] }); if (!groupAEnhancements) setMapRequested(true); }}>{HOUSING_RADII.map(radius => <option key={radius} value={radius}>Within {radius} miles</option>)}</select></label>
       <label htmlFor={`${filtersId}-sort`}>Sort by<select id={`${filtersId}-sort`} value={filters.sort} onChange={e => updateFilters({ ...filters, sort: e.target.value as HousingFilters['sort'] })}><option value="distance">Nearest first</option><option value="name">Name A–Z</option></select></label>
     </div>
     <div className="discovery-result-line"><p aria-live="polite"><strong>{matches.length}</strong> {matches.length === 1 ? 'community' : 'communities'}{savedOnly ? ' saved' : ' in our directory'}{filters.search ? ' matching your search' : ''} within {filters.radius} miles of {centerLabel}</p><button type="button" className="discovery-text-button" onClick={() => updateFilters({ ...DEFAULT_HOUSING_FILTERS })}><SlidersHorizontal size={13}/>Reset filters</button></div>
@@ -182,7 +184,8 @@ export function HousingOptions({ answers, busy, onSave, comparisonKey }: Props) 
     {matches.length > limit && <button type="button" className="button button-outline discovery-more" onClick={() => setLimit(n => n + pageSize)}>Show {Math.min(pageSize, matches.length - limit)} more <span>({visible.length} of {matches.length})</span></button>}
     </div>
     <aside ref={mapPanel} className="housing-explorer-map" aria-label="Housing and nearby services map">
-      {mapRequested ? <GoogleHousingMap apartments={matches} searchCenter={center} selectionRevision={selectionRevision} selectedId={matches.some(apartment => apartment.id === activeApartmentId) ? activeApartmentId : null} onSelectApartment={id => selectApartment(id, true)} onViewDetails={id => setDetailId(id)}/> : <div className="housing-map-placeholder"><MapPin size={32}/><h4>Your neighborhood, on one map.</h4><p>See these {matches.length} communities, UT Dallas and useful places nearby.</p><button type="button" className="button" onClick={() => setMapRequested(true)}>Load interactive map</button><p className="small">Loads after a valid search or when you choose. No device location is requested.</p></div>}
+      {groupAEnhancements && <div className={groupAStyles.mapControls}><strong>{mapRequested ? 'Interactive map enabled' : 'Interactive map paused'}</strong><p>Search and compare in the list without loading Google Maps. Loading the interactive map uses Google services; pause it when you are finished to stop rendering the map.</p>{mapRequested && <button type="button" className="button button-outline" onClick={() => setMapRequested(false)}>Pause interactive map</button>}<p className="discovery-note">Your filters, planning community and comparison stay available. Nearby layers are a curated directory. For current directions, open a community’s Details.</p></div>}
+      {mapRequested ? <GoogleHousingMap savedLayers={groupAEnhancements ? mapLayers : undefined} onLayersChange={groupAEnhancements ? setMapLayers : undefined} apartments={matches} searchCenter={center} selectionRevision={selectionRevision} selectedId={matches.some(apartment => apartment.id === activeApartmentId) ? activeApartmentId : null} onSelectApartment={id => selectApartment(id, true)} onViewDetails={id => setDetailId(id)}/> : <div className="housing-map-placeholder"><MapPin size={32}/><h4>Your neighborhood, on one map.</h4><p>See these {matches.length} communities, UT Dallas and useful places nearby.</p><button type="button" className="button" onClick={() => setMapRequested(true)}>Load interactive map</button><p className="small">{groupAEnhancements ? 'Loads only when you choose Load interactive map, Map view or Show on map. No device location is requested.' : 'Loads after a valid search or when you choose. No device location is requested.'}</p></div>}
     </aside></div>
     <p className="discovery-notice" role="status">{notice}</p>
     {compareIds.length > 0 && <aside className="discovery-tray" aria-label="Your apartment comparison"><div><strong>Compare · {compareIds.length} of 3</strong><ul>{comparison.map(apartment => <li key={apartment.id}><span>{apartment.name}</span><button type="button" aria-label={`Remove ${apartment.name} from comparison`} onClick={() => toggle(apartment.id)}><X size={14}/></button></li>)}</ul></div><div className="discovery-tray-actions"><button type="button" className="button" disabled={compareIds.length < 2} onClick={() => setComparing(true)}>Compare homes</button><button type="button" className="discovery-text-button" onClick={() => { storeComparison([]); setNotice('Comparison cleared. Your planning community is unchanged.'); }}>Clear comparison</button>{compareIds.length === 1 && <small>Add one more to compare.</small>}</div></aside>}

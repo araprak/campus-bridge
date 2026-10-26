@@ -9,4 +9,4 @@ export async function proxy(request:NextRequest){
   response.headers.set('Cache-Control','private, no-store');
   return response;
 }
-export const config={matcher:['/login','/verify-login','/account/:path*','/dashboard/:path*','/profile/:path*','/onboarding/:path*','/tasks/:path*','/verify-utd/:path*','/api/:path*','/auth/:path*','/reset-password']};
+export const config={matcher:['/login','/verify-login','/account/:path*','/dashboard/:path*','/profile/:path*','/onboarding/:path*','/tasks/:path*','/group-tools','/verify-utd/:path*','/api/:path*','/auth/:path*','/reset-password']};

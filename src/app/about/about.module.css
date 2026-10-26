@@ -4,8 +4,16 @@
 }
 
 .page h1 {
-  margin: 0 0 40px;
+  margin: 0 0 24px;
   font-size: clamp(36px, 5vw, 52px);
+}
+
+.journey {
+  max-width: 900px;
+  margin: 0 0 40px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.8;
 }
 
 .team {
@@ -47,6 +55,7 @@
 
 @media (max-width: 520px) {
   .page { padding-block: 36px 56px; }
-  .page h1 { margin-bottom: 28px; }
+  .page h1 { margin-bottom: 20px; }
+  .journey { margin-bottom: 32px; font-size: 16px; }
   .team { grid-template-columns: 1fr; max-width: 330px; margin-inline: auto; gap: 34px; }
 }

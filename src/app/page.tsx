@@ -1,16 +1,28 @@
 import Link from 'next/link';
 import { ArrowRight, Check, BusFront, House, Compass, CircleCheck, ListChecks, ShieldCheck, Lightbulb } from 'lucide-react';
 import { PublicHeader, Footer } from '@/components/brand';
+import { requestSiteGroup } from '@/lib/site-group';
+import { GROUPS } from '@/domain/site-groups';
+import groupStyles from './group-home.module.css';
 
-export default function Home() {
+export default async function Home() {
+  const group = await requestSiteGroup();
   return <>
     <PublicHeader/>
     <main id="main">
+      {group && <section className={`page-width ${groupStyles.intro}`} aria-labelledby="group-title">
+        <p className="eyebrow">CAMPUSBRIDGE · {GROUPS[group].name.toUpperCase()}</p>
+        <h1 id="group-title">{GROUPS[group].title}</h1>
+        <p>{GROUPS[group].description}</p>
+        <ul>{GROUPS[group].features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+        <Link className="button" href="/group-tools">Open {GROUPS[group].name} tools <ArrowRight size={17}/></Link>
+        <p className="small muted">Use your existing CampusBridge account. Your plan is shared across the group sites; sign in on each site separately. Password recovery opens the main CampusBridge site.</p>
+      </section>}
       <div className="landing-hero">
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="eyebrow"><span/> BUILT FOR YOUR NEXT CHAPTER</p>
-            <h1>Arrive ready.<br/><em>Make it yours.</em></h1>
+            {group?<h2>Arrive ready.<br/><em>Make it yours.</em></h2>:<h1>Arrive ready.<br/><em>Make it yours.</em></h1>}
             <p className="hero-description">Find a home. Set up the essentials. Get to know UT Dallas—all in one personal plan.</p>
             <div className="hero-actions">
               <Link className="button" href="/signup">Build my plan <ArrowRight size={18}/></Link>

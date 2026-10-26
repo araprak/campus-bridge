@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { initialState, validateState, type StudentState } from './model';
 import { authCookieOptions, PERSIST_COOKIE } from './session-policy';
+import { allowedRequestOrigin } from '../domain/site-groups';
 export function configured(){return !!(process.env.NEXT_PUBLIC_SUPABASE_URL&&process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);}
 export function accountsEnabled(){
   const ready=configured()&&process.env.CAMPUSBRIDGE_ACCOUNTS_ENABLED==='true'
@@ -26,10 +27,7 @@ export async function serverClient(){
 }
 export function adminClient(){if(!configured()||!process.env.SUPABASE_SECRET_KEY)throw new Error('Verification is not available yet.');return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,process.env.SUPABASE_SECRET_KEY,{auth:{autoRefreshToken:false,persistSession:false}});}
 export function assertOrigin(request:Request){
-  const allowed=new Set([siteUrl()]);
-  if(process.env.NODE_ENV==='development'){allowed.add('http://localhost:3000');allowed.add('http://127.0.0.1:3000');}
-  if(process.env.VERCEL_URL)allowed.add(`https://${process.env.VERCEL_URL}`);
-  if(!allowed.has(request.headers.get('origin')||''))throw new Error('Please reopen CampusBridge and try again.');
+  if(!allowedRequestOrigin(request.headers.get('origin'),request.url,siteUrl(),process.env.VERCEL_URL,process.env.NODE_ENV==='development',request.headers.get('host')))throw new Error('Please reopen CampusBridge and try again.');
 }
 export async function jsonBody(request:Request){const body=await request.text();if(body.length>20_000)throw new Error('The request is too large.');return JSON.parse(body);}
 export function reply(body:unknown,status=200){return Response.json(body,{status,headers:{'Cache-Control':'private, no-store'}});}

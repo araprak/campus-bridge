@@ -1,3 +1,9 @@
+## v2.5.0 — Group A and Group B tools (October 25, 2026)
+
+[Group A](https://grp-a.campusbridgeguide.com) receives Maps, Transportation and arrival, and Campus expansion/premium research. [Group B](https://grp-b.campusbridgeguide.com) receives Expenses and budgeting, Helpful reminders, and Accessibility/trust. Both keep the existing CampusBridge foundation and account-backed plan. The About page now has one journey paragraph before the team photos.
+
+See the [v2.5.0 release notes](docs/releases/v2.5.0.md), [group-site scope and verification](docs/group-sites/README.md), and [single version index](docs/releases/README.md). New enhancements are selected by the exact subdomain; existing baseline features remain shared. Group B local saving is optional, and calendar notification delivery depends on the importing app. Feature set 12 remains research only.
+
 ## v2.4.0 — One continuous version history (October 24, 2026)
 
 [Version history](https://campusbridgeguide.com/releases) now has one timeline: v2.4.0, followed by v2.3 through v0.1. The [GitHub version index](docs/releases/README.md) matches it, and each version opens its own document directly. This consolidates the October 24 About page, linked release documents, full 113-entry change log, and owner-confirmed implemented-and-verified status. The approved About page and team photographs are unchanged.

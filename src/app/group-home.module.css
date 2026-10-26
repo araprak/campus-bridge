@@ -1,0 +1,7 @@
+.intro { padding-block: 48px; }
+.intro h1 { font-size: clamp(32px, 4vw, 48px); margin: 8px 0 16px; }
+.intro > p { max-width: 760px; line-height: 1.75; }
+.intro ul { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-left: 20px; margin: 24px 0; }
+.intro li { padding-right: 10px; font-weight: 600; }
+.intro > .button { margin-bottom: 10px; }
+@media (max-width: 600px) { .intro { padding-block: 32px; } .intro ul { display: grid; gap: 12px; } }

@@ -1,5 +1,47 @@
 [
   {
+    "version": "2.5.0",
+    "label": "v2.5.0",
+    "kind": "release",
+    "date": "2026-10-25",
+    "title": "Group A and Group B tools, with the CampusBridge journey",
+    "notesPath": "docs/releases/v2.5.0.md",
+    "features": [
+      {
+        "title": "Separate group sites",
+        "summary": "Group A and Group B have their own subdomains and assigned tools while retaining the shared CampusBridge foundation and accounts."
+      },
+      {
+        "title": "Group A: Google Maps experience",
+        "summary": "Load the housing map on request, pause its renderer, and retain filters, selections, comparison and nearby layers."
+      },
+      {
+        "title": "Group A: Transportation and arrival",
+        "summary": "Plan an arrival from DFW or Love Field to campus, an apartment or another address, with official sources and selected travel-mode directions."
+      },
+      {
+        "title": "Group A: Campus expansion and premium research",
+        "summary": "Compare future concepts, record evidence and export a research worksheet before any campus or paid-service pilot."
+      },
+      {
+        "title": "Group B: Expenses and budgeting",
+        "summary": "Compare up to three user-entered cost scenarios with unknown amounts, monthly costs and move-in cash shown separately; choose whether to save locally."
+      },
+      {
+        "title": "Group B: Helpful reminders",
+        "summary": "Opt into personal time-zone-aware reminders and export calendar events with an optional 15-minute alert request."
+      },
+      {
+        "title": "Group B: Accessibility and trust",
+        "summary": "Use plain-language terms, a limited Hindi/Korean term pilot, reviewed official source cards and outdated-information report drafts."
+      },
+      {
+        "title": "About journey",
+        "summary": "Read the team’s journey from a student research project to the First 30 Days Navigator before the team photos and names."
+      }
+    ]
+  },
+  {
     "version": "2.4.0",
     "label": "v2.4.0",
     "kind": "release",

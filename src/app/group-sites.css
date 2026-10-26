@@ -1,0 +1,7 @@
+.group-shell .sidebar { position: sticky; top: 0; height: 100dvh; flex-shrink: 0; }
+.group-shell .app-content { margin-left: 0; flex: 1; min-width: 0; }
+.landing-hero .hero-copy > h2 { font-family: var(--font-display, Georgia, serif); font-size: clamp(42px, 5vw, 72px); line-height: 1.1; letter-spacing: -1.5px; margin: 20px 0 24px; }
+@media (max-width: 760px) {
+  .group-shell .sidebar { position: static; height: auto; }
+  .group-shell .sidebar nav a { min-width: 44px; min-height: 44px; }
+}

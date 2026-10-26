@@ -1,0 +1,5 @@
+.banner { background: #e9f3f1; border-bottom: 1px solid #c7ded8; color: #204d47; padding: 12px max(20px, calc((100vw - 1200px) / 2)); display: flex; justify-content: space-between; gap: 16px; font-size: 13px; line-height: 1.6; }
+.banner > div { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.banner nav { display: flex; flex-shrink: 0; flex-wrap: wrap; gap: 8px 18px; }
+.banner a { text-decoration: underline; font-weight: 600; }
+@media (max-width: 780px) { .banner { flex-direction: column; gap: 8px; padding: 12px 20px; } }

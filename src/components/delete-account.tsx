@@ -2,8 +2,9 @@
 
 import { useId, useRef, useState } from 'react';
 import { clearComparisonStorage } from '@/domain/apartment-discovery';
+import { clearGroupBLocalData } from '@/domain/group-b-budget';
 
-export function DeleteAccount({ disabled = false, comparisonKey = null }: { disabled?: boolean; comparisonKey?: string | null }) {
+export function DeleteAccount({ disabled = false, comparisonKey = null, accountId }: { disabled?: boolean; comparisonKey?: string | null; accountId?: string }) {
   const id = useId();
   const dialog = useRef<HTMLDialogElement>(null);
   const keepAccount = useRef<HTMLButtonElement>(null);
@@ -55,6 +56,7 @@ export function DeleteAccount({ disabled = false, comparisonKey = null }: { disa
       }
       deleted = true;
       try { clearComparisonStorage(sessionStorage, comparisonKey); } catch { /* Storage may be blocked. */ }
+      try { if (accountId) clearGroupBLocalData(localStorage, accountId); } catch { /* Other subdomains' browser data must be cleared there. */ }
       window.location.replace('/login?deleted=success');
     } catch (failure) {
       setError(failure instanceof Error ? failure.message : 'We couldn’t delete your account. Please try again.');
