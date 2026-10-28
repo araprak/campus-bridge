@@ -1,3 +1,7 @@
+## v2.7.1 — Accurate save confirmation (October 28, 2026)
+
+Corrects the arrival planner’s save confirmation while retaining newer edits made during a request. [Release notes](docs/releases/v2.7.1.md) · [Verification](docs/group-sites/verification-v2.7.md).
+
 ## v2.7.0 — Connected group tools (October 28, 2026)
 
 The approved Phase 0–4 implementation adds Group A account-saved arrival planning and on-campus map locations, Group B connected budget estimates, account-saved reminders and private source reports, and shared Spring 2027 navigation. Each group stays on its own subdomain. [Release notes](docs/releases/v2.7.0.md) · [Group guide](docs/group-sites/README.md) · [October 29 presentation](docs/group-sites/presentation-2026-10-29.md) · [Intake support](docs/group-sites/intake-support.md).

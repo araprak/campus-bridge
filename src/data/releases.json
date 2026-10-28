@@ -1,5 +1,19 @@
 [
   {
+    "version": "2.7.1",
+    "label": "v2.7.1",
+    "kind": "release",
+    "date": "2026-10-28",
+    "title": "Accurate confirmation after arrival saves",
+    "notesPath": "docs/releases/v2.7.1.md",
+    "features": [
+      {
+        "title": "Shared: Accurate account-save confirmation",
+        "summary": "Compare the draft before and after a save so validation normalization does not falsely report newer unsaved edits, while actual edits made during saving remain in the tab."
+      }
+    ]
+  },
+  {
     "version": "2.7.0",
     "label": "v2.7.0",
     "kind": "release",

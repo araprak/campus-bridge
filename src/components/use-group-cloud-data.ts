@@ -28,12 +28,12 @@ export function useGroupCloudData<T>({kind,parse,initialData}:{kind:Kind;parse:(
   useEffect(()=>{active.current=true;void reload();return()=>{active.current=false;generation.current++;};},[reload]);
   async function write(method:'PUT'|'DELETE',next?:T){
     if(!ready.current||working.current||loading)return false;
-    working.current=true;setBusy(true);setError('');setNotice('');const attempt=generation.current;const submitted=next??draft.current;const submittedText=JSON.stringify(submitted);
+    working.current=true;setBusy(true);setError('');setNotice('');const attempt=generation.current;const submitted=next??draft.current;const draftAtStart=JSON.stringify(draft.current);
     try{
       const response=await fetch(`/api/group-data/${kind}`,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(method==='PUT'?{data:submitted,expectedRevision:revision,consent:true}:{expectedRevision:revision})});
       const body=await response.json();if(!response.ok){if(response.status===409)ready.current=false;throw new Error(body.error||'Your saved data was not changed.');}
       if(!active.current||attempt!==generation.current)return false;
-      const newerDraft=method==='PUT'&&JSON.stringify(draft.current)!==submittedText?draft.current:null;accept(body);if(newerDraft!==null){setData(newerDraft);draft.current=newerDraft;}setNotice(method==='PUT'?(newerDraft!==null?'Saved that copy. Your newer edits are still unsaved.':'Saved to your account.'):'Removed from your account.');return true;
+      const newerDraft=method==='PUT'&&JSON.stringify(draft.current)!==draftAtStart?draft.current:null;accept(body);if(newerDraft!==null){setData(newerDraft);draft.current=newerDraft;}setNotice(method==='PUT'?(newerDraft!==null?'Saved that copy. Your newer edits are still unsaved.':'Saved to your account.'):'Removed from your account.');return true;
     }catch(problem){if(active.current&&attempt===generation.current)setError(problem instanceof Error?problem.message:'Your saved data was not changed.');return false;}
     finally{working.current=false;if(active.current&&attempt===generation.current)setBusy(false);}
   }

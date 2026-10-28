@@ -2,7 +2,7 @@
 
 [Open Version history on the website](https://campusbridgeguide.com/releases). This index and the website use the single newest-first manifest at `src/data/releases.json`. Every version links directly to its matching GitHub document.
 
-The current version is **v2.7.0**, adding connected group tools and Spring 2027 preparation through the approved Phase 4 scope. Version v2.5.1 improved map cleanup after the v2.5.0 group-sites release. Version v2.5.0 added the separate Group A and Group B tools and the About journey. The previous v2.4.0 continues after v2.3. Version v2.4.0 consolidates the October 24 team, history, and verification updates. The earlier October 24 labels v1.0.0, v1.1.0, and v1.1.1 were a numbering restart; they are superseded by v2.4.0. Their original documents remain unchanged and accessible at the same URLs, with their metadata retained in `legacy-records.json`.
+The current version is **v2.7.1**, correcting the account-save confirmation after v2.7.0 added connected group tools and Spring 2027 preparation through the approved Phase 4 scope. Version v2.5.1 improved map cleanup after the v2.5.0 group-sites release. Version v2.5.0 added the separate Group A and Group B tools and the About journey. The previous v2.4.0 continues after v2.3. Version v2.4.0 consolidates the October 24 team, history, and verification updates. The earlier October 24 labels v1.0.0, v1.1.0, and v1.1.1 were a numbering restart; they are superseded by v2.4.0. Their original documents remain unchanged and accessible at the same URLs, with their metadata retained in `legacy-records.json`.
 
 ## Version index
 
@@ -10,6 +10,7 @@ Dates for the original groups retain the source’s wording where an exact relea
 
 | Version | Date or recorded period | Update | Entries |
 | --- | --- | --- | --- |
+| [v2.7.1](v2.7.1.md) | 2026-10-28 | Accurate confirmation after arrival saves | 1 fix note |
 | [v2.7.0](v2.7.0.md) | 2026-10-28 | Connected group tools and Spring 2027 preparation | 10 feature notes |
 | [v2.5.1](v2.5.1.md) | 2026-10-25 | Keep map fallback usable after closing | 1 fix note |
 | [v2.5.0](v2.5.0.md) | 2026-10-25 | Group A and Group B tools, with the CampusBridge journey | 8 feature notes |
