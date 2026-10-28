@@ -47,7 +47,7 @@ test('database migration and access boundaries in isolated Postgres',async t=>{
  await t.test('anonymous visitors cannot read private records or issue challenges',async()=>{
   for(const role of ['anon','authenticated'])assert.equal((await db.query<{allowed:boolean}>("select has_function_privilege($1, 'private.valid_answers(jsonb)', 'execute') as allowed",[role])).rows[0].allowed,false);
   await actor('anon');await assert.rejects(db.query('select * from public.profiles'),/permission denied/);await assert.rejects(db.query('select * from private.verification_challenges'),/permission denied/);
-  const catalog=JSON.parse(await readFile(new URL('../src/data/catalog.json',import.meta.url),'utf8'));
+  const catalog=JSON.parse(await readFile(new URL('./fixtures/pre-spring-catalog.json',import.meta.url),'utf8'));
   assert.equal((await db.query('select * from public.task_templates')).rows.length,catalog.tasks.length);
   await assert.rejects(db.query('select public.reset_task_completions($1)',[0]),/permission denied/);
  });
@@ -134,7 +134,7 @@ test('database migration and access boundaries in isolated Postgres',async t=>{
   await actor('service_role');assert.equal((await db.query<{ok:boolean}>('select public.redeem_utd_challenge($1,$2,$3) as ok',[C,'student-c@utdallas.edu',digest])).rows[0].ok,false);
  });
  await t.test('historical SQL applicability matches legacy rules across 288 profiles, including stale car answers',async()=>{
-  await actor('postgres');const catalog=JSON.parse(await readFile(new URL('../src/data/catalog.json',import.meta.url),'utf8'));
+  await actor('postgres');const catalog=JSON.parse(await readFile(new URL('./fixtures/pre-spring-catalog.json',import.meta.url),'utf8'));
   for(const housingLocation of ['on_campus','off_campus'])for(const electricity of ['included','not_included','unknown'])for(const internet of ['included','not_included','unknown'])for(const hasCar of [true,false])for(const household of ['alone','roommates'])for(const transport of ['car','transit','walking','undecided']){
    const a={...answers,housingLocation,electricity,internet,hasCar,household,transport} as PlanAnswers;
    // This fixture deliberately loads the pre-personal-login migrations. Give

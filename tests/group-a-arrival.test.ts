@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { arrivalRouteUrl, expansionReadiness, expansionWorksheetText } from '../src/domain/group-a-arrival.ts';
+import { arrivalRouteUrl, expansionReadiness, expansionWorksheetText, parseGroupAArrivalRoute } from '../src/domain/group-a-arrival.ts';
+import { APARTMENTS } from '../src/data/local-options.ts';
+import { GROUP_A_ON_CAMPUS_HOUSING } from '../src/data/group-a-housing.ts';
 import { ARRIVAL_AIRPORTS, ARRIVAL_TRAVEL_OPTIONS } from '../src/data/group-a-arrival.ts';
 
 test('airport routes encode the selected airport, exact destination and chosen travel mode', () => {
@@ -15,6 +17,31 @@ test('airport routes encode the selected airport, exact destination and chosen t
       assert.equal(route.searchParams.has('key'), false);
     }
   }
+});
+
+const savedRoute = { version: 1, airport: 'DFW', travel: 'transit', destinationKind: 'community', campusId: 'su', communityId: APARTMENTS[0].id, customDestination: '', arrivalDate: '2027-01-10', checklist: ['first-night', 'documents'] };
+test('account arrival data accepts catalog choices and strips extra identity or owner fields', () => {
+  assert.deepEqual(parseGroupAArrivalRoute({ ...savedRoute, user_id: 'someone-else', email: 'not-stored@example.test', customDestination: 'Unused address', checklist: ['documents', 'documents'] }), { ...savedRoute, checklist: ['documents'] });
+  assert.deepEqual(parseGroupAArrivalRoute({ ...savedRoute, destinationKind: 'custom', customDestination: ' 123 Main St, Richardson, TX ' }), { ...savedRoute, destinationKind: 'custom', customDestination: '123 Main St, Richardson, TX' });
+});
+test('account arrival data rejects malformed dates, catalog IDs, enums and checklist values', () => {
+  for (const patch of [{ version: 2 }, { airport: 'OTHER' }, { travel: 'flying' }, { campusId: 'unknown' }, { communityId: 'unknown' }, { destinationKind: 'unknown' }, { destinationKind: 'custom', customDestination: ' ' }, { customDestination: 'x'.repeat(301) }, { customDestination: 'one\ntwo' }, { arrivalDate: '2027-02-30' }, { arrivalDate: '0000-01-01' }, { arrivalDate: '2027-13-01' }, { checklist: ['unknown'] }, { checklist: ['documents', 4] }]) assert.equal(parseGroupAArrivalRoute({ ...savedRoute, ...patch }), null, JSON.stringify(patch));
+  assert.equal(parseGroupAArrivalRoute(null), null);
+  assert.equal(parseGroupAArrivalRoute([]), null);
+});
+test('on-campus Group A pins retain published UTD map references and distinguish buildings from assigned homes', () => {
+  assert.equal(GROUP_A_ON_CAMPUS_HOUSING.length, 4);
+  assert.equal(new Set(GROUP_A_ON_CAMPUS_HOUSING.map(item => item.id)).size, 4);
+  for (const item of GROUP_A_ON_CAMPUS_HOUSING) {
+    assert.equal(item.layer, 'campus');
+    assert.equal(new URL(item.url!).hostname, 'housing.utdallas.edu');
+    assert.equal(new URL(item.sourceUrl).hostname, 'map.concept3d.com');
+    assert.match(item.reviewedOn, /^2026-10-27$/);
+    assert.match(item.note!, /assigned|availability|eligibility/);
+    assert.ok(item.latitude > 32.98 && item.latitude < 32.992);
+    assert.ok(item.longitude > -96.756 && item.longitude < -96.75);
+  }
+  assert.match(GROUP_A_ON_CAMPUS_HOUSING.find(item => item.id.includes('village'))!.note!, /Housing Office, not every apartment/);
 });
 
 test('arrival directions reject missing, oversized, invalid or control-character inputs', () => {

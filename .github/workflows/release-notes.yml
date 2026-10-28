@@ -31,3 +31,13 @@ jobs:
           else
             node scripts/check-releases.mjs
           fi
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Test account boundaries and feature rules
+        run: npm test
+      - name: Check types
+        run: npm run typecheck
+      - name: Build the release
+        run: npm run build
+      - name: Check real host routing and protected group APIs
+        run: node scripts/check-group-isolation.mjs --start

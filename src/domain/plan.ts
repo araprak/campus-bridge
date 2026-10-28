@@ -105,7 +105,7 @@ export const PLAN_STAGES: readonly { id: PlanStage; label: string }[] = [
   { id: 'first_week', label: 'First week' },
   { id: 'first_30_days', label: 'First month' },
 ];
-const preparationTasks = new Set(['confirm-off-campus-move-in', 'prepare-on-campus-check-in', 'arrange-electricity', 'arrange-home-internet', 'plan-campus-transit', 'arrange-campus-parking', 'check-student-tech']);
+const preparationTasks = new Set(['review-entry-documents','complete-international-orientation','review-health-requirements','review-international-insurance','confirm-off-campus-move-in', 'prepare-on-campus-check-in', 'arrange-electricity', 'arrange-home-internet', 'plan-campus-transit', 'arrange-campus-parking', 'check-student-tech']);
 const essentialTasks = new Set(['confirm-off-campus-move-in', 'prepare-on-campus-check-in', 'arrange-electricity', 'arrange-home-internet', 'plan-campus-transit']);
 function stageTiming(stage: PlanStage, days: number): PlanTask['timing'] {
   if (stage === 'before_arrival') return days < 0 ? 'current' : 'earlier';

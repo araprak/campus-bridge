@@ -31,6 +31,15 @@
 .checks label { display: flex; align-items: flex-start; gap: .65rem; line-height: 1.6; margin: .65rem 0; font-size: .9rem; }
 .checks input { margin-top: .3rem; width: 1.1rem; height: 1.1rem; flex-shrink: 0; accent-color: #624277; }
 .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.card { padding: 1rem; border: 1px solid #ded5e5; border-radius: 10px; }
+.card h4 { margin: .1rem 0 .7rem; }
+.onCampus { margin-top: 1.5rem; border-top: 1px solid #ded5e5; padding-top: 1.5rem; }
+.card a, .checks a, .result a { color: #56396b; text-decoration: underline; text-underline-offset: 3px; }
+.formFields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.saveBox { padding: 1rem; background: #f7f3f9; border-radius: 10px; }
+.consent { display: flex; gap: .7rem; align-items: flex-start; line-height: 1.6; margin-bottom: 1rem; }
+.consent input { margin-top: .35rem; accent-color: #624277; width: 1.1rem; height: 1.1rem; flex-shrink: 0; }
 .mapControls { border: 1px solid #d7ccdf; background: #f6f1f9; padding: .85rem; border-radius: 10px; margin-bottom: .85rem; font-size: .85rem; line-height: 1.6; }
 .mapControls p { margin: .4rem 0 .7rem; }
 .tools :is(button, a, input, textarea, select):focus-visible, .mapControls :is(button, a):focus-visible { outline: 3px solid #79528e; outline-offset: 3px; }

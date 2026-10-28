@@ -1,5 +1,55 @@
 [
   {
+    "version": "2.7.0",
+    "label": "v2.7.0",
+    "kind": "release",
+    "date": "2026-10-28",
+    "title": "Connected group tools and Spring 2027 preparation",
+    "notesPath": "docs/releases/v2.7.0.md",
+    "features": [
+      {
+        "title": "Group A: Maps and on-campus housing",
+        "summary": "Explore four on-campus housing locations alongside the community directory, with the map loading only on request and list controls retained when paused."
+      },
+      {
+        "title": "Group A: Connected arrival planner",
+        "summary": "Start from shared arrival and apartment choices, review sourced airport options and an arrival-day checklist, and explicitly save a private Group A route to your account."
+      },
+      {
+        "title": "Group A: Team research",
+        "summary": "Keep expansion and premium concepts in a clearly labelled team worksheet while the work remains on Group A."
+      },
+      {
+        "title": "Group B: Connected budget estimates",
+        "summary": "Compare up to three plan-connected budgets with editable per-person ranges, unknown costs, monthly totals, move-in cash and conditional Spring 2027 charges."
+      },
+      {
+        "title": "Group B: Account-saved budgets and reminders",
+        "summary": "Choose account saving for each tool, load it on another device, handle conflicting saves, remove saved copies and explicitly import earlier browser copies."
+      },
+      {
+        "title": "Group B: Spring reminders and glossary",
+        "summary": "Add sourced Spring 2027 reminders, choose dates where no exact deadline is verified, export calendar events and look up F1 and UTD terms."
+      },
+      {
+        "title": "Group B: Source reports",
+        "summary": "Submit an issue from an official source card and see the status of your own reports in a private account queue."
+      },
+      {
+        "title": "Shared: Spring 2027 plan review",
+        "summary": "Add conditional entry, immigration check-in, orientation, health-requirement and insurance navigation to the shared plan with official sources and review dates."
+      },
+      {
+        "title": "Shared: Faster pages and group guards",
+        "summary": "Use a 112 KB homepage image, clearer group previews and banners, corrected not-found titles, protected APIs and automated isolation checks."
+      },
+      {
+        "title": "Shared: Presentation and intake support",
+        "summary": "Prepare October 29 demo scripts, source freshness and host-version checks, and a January intake review process while future schedules and venue rehearsals remain pending."
+      }
+    ]
+  },
+  {
     "version": "2.5.1",
     "label": "v2.5.1",
     "kind": "release",

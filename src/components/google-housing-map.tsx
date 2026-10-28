@@ -18,6 +18,7 @@ type Props = {
   onViewDetails: (id: string) => void;
   savedLayers?: HousingMapLayer[];
   onLayersChange?: (layers: HousingMapLayer[]) => void;
+  additionalLocations?: readonly HousingMapLocation[];
 };
 type Point = { latitude: number; longitude: number };
 type AuthWindow = Window & { gm_authFailure?: () => void };
@@ -141,7 +142,7 @@ function LocationPopup({ location }: { location: HousingMapLocation }) {
   </div>;
 }
 
-function MapContent({ apartments, searchCenter, selectedId, selectionRevision, onSelectApartment, onViewDetails, savedLayers, onLayersChange, mapId, failed }: Props & { mapId: string; failed: boolean }) {
+function MapContent({ apartments, searchCenter, selectedId, selectionRevision, onSelectApartment, onViewDetails, savedLayers, onLayersChange, additionalLocations, mapId, failed }: Props & { mapId: string; failed: boolean }) {
   const status = useApiLoadingStatus();
   const legendId = useId();
   const [layers, setLayers] = useState<HousingMapLayer[]>(savedLayers ?? initialLayers);
@@ -151,7 +152,7 @@ function MapContent({ apartments, searchCenter, selectedId, selectionRevision, o
   const [slow, setSlow] = useState(false);
   const selected = apartments.find(apartment => apartment.id === selectedId);
   const showApartment = selected && layers.includes('apartments') && dismissedApartment !== selectedId && !activeLocation;
-  const locations = useMemo(() => CURATED_MAP_LOCATIONS.filter(location => layers.includes(location.layer)), [layers]);
+  const locations = useMemo(() => [...CURATED_MAP_LOCATIONS, ...(additionalLocations ?? [])].filter(location => layers.includes(location.layer)), [layers, additionalLocations]);
   const plottedApartments = layers.includes('apartments') ? apartments : [];
   const points = [...plottedApartments, ...locations, ...(searchCenter ? [{ ...searchCenter, id: `zip-${searchCenter.zip}` }] : [])];
   // Parent filtering returns a fresh array; only a changed set of pins resets bounds.
@@ -180,7 +181,7 @@ function MapContent({ apartments, searchCenter, selectedId, selectionRevision, o
     <fieldset className="housing-map-layers" aria-describedby={legendId}><legend>Show on the map</legend>
       {(Object.keys(MAP_LAYER_LABELS) as HousingMapLayer[]).map(layer => <label key={layer}>
         <input type="checkbox" checked={layers.includes(layer)} onChange={() => toggleLayer(layer)}/>
-        <span className="housing-map-layer-symbol" style={{ backgroundColor: layerStyles[layer].color }} aria-hidden="true">{layerStyles[layer].glyph}</span>{MAP_LAYER_LABELS[layer]}
+        <span className="housing-map-layer-symbol" style={{ backgroundColor: layerStyles[layer].color }} aria-hidden="true">{layerStyles[layer].glyph}</span>{layer === 'campus' && additionalLocations?.length ? 'Campus and on-campus housing' : MAP_LAYER_LABELS[layer]}
       </label>)}
     </fieldset>
     <p id={legendId} className="housing-map-help">Toggle places to explore the area. A researched starting list, not live search results.{searchCenter && ` ZIP marker: approximate Census reference point for ${searchCenter.zip}.`}</p>

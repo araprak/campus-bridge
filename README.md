@@ -1,4 +1,12 @@
-## v2.5.1 — Map fallback cleanup (October 25, 2026)
+## v2.7.0 — Connected group tools (October 28, 2026)
+
+The approved Phase 0–4 implementation adds Group A account-saved arrival planning and on-campus map locations, Group B connected budget estimates, account-saved reminders and private source reports, and shared Spring 2027 navigation. Each group stays on its own subdomain. [Release notes](docs/releases/v2.7.0.md) · [Group guide](docs/group-sites/README.md) · [October 29 presentation](docs/group-sites/presentation-2026-10-29.md) · [Intake support](docs/group-sites/intake-support.md).
+
+The existing Maps key now permits Group A, with its previous restrictions retained. The signed-in production map was verified October 27. DART's latest published feed still ends December 6; January 11 service and future source freshness require the scheduled intake review. Unpublished apartment prices remain Unknown. No Phase 5 merge is included.
+
+### Earlier release record
+
+### v2.5.1 — Map fallback cleanup (October 25, 2026)
 
 Delayed map resize callbacks stop after the map is removed or paused. This keeps the housing list and other group tools usable when Google rejects a map origin. See [v2.5.1 notes](docs/releases/v2.5.1.md). Google map key permissions still need a signed-in check on the new production group hostname.
 

@@ -1,7 +1,7 @@
 {
-  "catalogVersion": "midterm-v1-2026-09-25",
-  "reviewedAt": "2026-09-25",
-  "contentNote": "CampusBridge planning suggestions supported by the linked resources. Time buckets are product recommendations, not university deadlines. Provider availability, costs, transit eligibility, and opening hours must be checked with the source.",
+  "catalogVersion": "spring-2027-2026-10-27",
+  "reviewedAt": "2026-10-27",
+  "contentNote": "Spring 2027 navigation reviewed October 27, 2026. Eligibility and personal deadlines belong to UTD and the responsible agencies. Conditional tasks may be marked not applicable; no immigration or health documents are collected.",
   "integrationNotes": [
     "Use publisher identity for Official UTD / Government labels. Do not turn reviewedAt into a live-link-verified claim.",
     "retrieval_failed means the official search index was reviewed but direct opening failed; it does not prove the public site is down.",
@@ -248,7 +248,8 @@
       "steps": [
         "Find the Comet Cupboard in the campus guide.",
         "Check current visit instructions.",
-        "Save the location for when you need it."
+        "Save the location for when you need it.",
+        "Before your first Comet Cupboard visit of the academic year, complete its orientation video and program agreement, and bring your Comet Card; check current hours."
       ],
       "help": "UTD Comet Cupboard team",
       "resourceId": "utd-comet-cupboard"
@@ -268,6 +269,86 @@
       ],
       "help": "The mobile provider can check your phone and plan requirements.",
       "resourceId": "utd-new-student-tech"
+    },
+    {
+      "id": "review-entry-documents",
+      "title": "Review your entry documents and I-20 start date",
+      "category": "campus",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "always",
+      "why": "Review the official instructions that apply to your student category; mark not applicable when appropriate.",
+      "steps": [
+        "If you are making initial F-1 entry, review the program start date printed on your I-20; the entry window is based on that date, not the first class day.",
+        "Use the official DHS and ISSO instructions to prepare; carry your passport, visa and I-20 in your carry-on.",
+        "Do not upload immigration documents to CampusBridge. Mark this task not applicable if it does not apply to you."
+      ],
+      "help": "ISSO",
+      "resourceId": "spring-entry"
+    },
+    {
+      "id": "complete-immigration-check-in",
+      "title": "Complete your required immigration check-in",
+      "category": "campus",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "always",
+      "why": "Review the official instructions that apply to your student category; mark not applicable when appropriate.",
+      "steps": [
+        "If required for your status, follow New Student Immigration Check-In in iComet after arrival.",
+        "Use the due date and documents in your own ISSO instructions; CampusBridge does not invent a universal check-in deadline.",
+        "Submit documents only through the university system. Mark not applicable when appropriate."
+      ],
+      "help": "UT Dallas ISSO",
+      "resourceId": "spring-checkin"
+    },
+    {
+      "id": "complete-international-orientation",
+      "title": "Check your Spring 2027 orientation requirements",
+      "category": "campus",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "always",
+      "why": "Review the official instructions that apply to your student category; mark not applicable when appropriate.",
+      "steps": [
+        "New F/J graduate and exchange students must follow International Student Orientation requirements; undergraduates use their own orientation instructions.",
+        "Registration and pre-arrival modules open October 28. Complete the modules one day before the January 13 session. Confirm opening times on the official page.",
+        "January 13 check-in is 12:30–1:30 p.m., with orientation 2–7 p.m. at ATC Lecture Hall; confirm your assigned session and the $50 attendance fee."
+      ],
+      "help": "UT Dallas Intercultural Programs",
+      "resourceId": "spring-orientation"
+    },
+    {
+      "id": "review-health-requirements",
+      "title": "Review screening, vaccination and registration holds",
+      "category": "campus",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "always",
+      "why": "Review the official instructions that apply to your student category; mark not applicable when appropriate.",
+      "steps": [
+        "People born outside the United States should review the required U.S. IGRA/T-Spot screening instructions with Student Health Center. December 1 is the appointment-link opening, not a completion deadline.",
+        "Entering students under 22 should check the Registrar’s meningitis documentation and exemption instructions; Spring 2027 vaccine administration cutoff is January 9 if required.",
+        "Use official university channels for medical records. CampusBridge does not collect birth dates, health records or make eligibility decisions."
+      ],
+      "help": "UT Dallas Student Health Center and Registrar",
+      "resourceId": "spring-health"
+    },
+    {
+      "id": "review-international-insurance",
+      "title": "Review your international student insurance coverage",
+      "category": "campus",
+      "horizon": "first_48_hours",
+      "priority": "high",
+      "rule": "always",
+      "why": "Review the official instructions that apply to your student category; mark not applicable when appropriate.",
+      "steps": [
+        "F-1/F-2/J-1/J-2 students should review automatic UT SHIP enrollment and coverage requirements.",
+        "A waiver requires eligible comparable alternative coverage and university approval. Check the official waiver window; submitting a request does not cancel required coverage.",
+        "Spring medical coverage is January 1–May 31. Read current rates, dependent costs and university instructions before budgeting."
+      ],
+      "help": "UT Dallas Student Health Insurance",
+      "resourceId": "spring-insurance"
     }
   ],
   "resources": [
@@ -277,9 +358,9 @@
       "url": "https://icp.utdallas.edu/resources/housing/apartment-resource/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas Intercultural Programs",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. The article is dated May 26, 2023. Use it for general housing questions, not current provider availability, pricing, or legal advice."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official general article published May 26, 2023; reviewed October 27, 2026. Rental approval, deposits and prices must be confirmed with each property."
     },
     {
       "id": "utd-housing-move-in",
@@ -287,9 +368,9 @@
       "url": "https://housing.utdallas.edu/resources/move-in/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas University Housing",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Follow the housing assignment message and current term instructions; no dates from the page are hard-coded here."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Page currently describes Fall 2026 move-in. Use general preparation guidance only; obtain Spring 2027 key pickup and move-in time directly from Housing."
     },
     {
       "id": "utd-housing-faq",
@@ -297,9 +378,9 @@
       "url": "https://housing.utdallas.edu/resources/move-in/resources-and-faqs/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas University Housing",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Peer Advisor and residential technology guidance applies to UTD housing, not private apartments."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Page currently describes Fall 2026 move-in. Use general preparation guidance only; obtain Spring 2027 key pickup and move-in time directly from Housing."
     },
     {
       "id": "utd-transit",
@@ -307,9 +388,9 @@
       "url": "https://services.utdallas.edu/transit/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas Parking & Transportation",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Hub includes current Comet Cruiser maps and a Students link under DART Access Pass. No fare, eligibility guarantee, route number, or schedule is hard-coded."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Follow current instructions when acting; availability and personal eligibility are not guaranteed."
     },
     {
       "id": "utd-parking",
@@ -317,9 +398,9 @@
       "url": "https://services.utdallas.edu/transit/park/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas Parking & Transportation",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. No prices, grace periods, or enforcement times are hard-coded; users must confirm their current permit and space rules."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Follow current instructions when acting; availability and personal eligibility are not guaranteed."
     },
     {
       "id": "texas-power-to-choose",
@@ -327,9 +408,9 @@
       "url": "https://www.powertochoose.org/",
       "sourceType": "government",
       "publisher": "Public Utility Commission of Texas",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Direct retrieval returned 402. Ownership and purpose are documented in PUCT publications, including its 2023 biennial report and January 5, 2024 release. This resource is for addresses eligible for retail electric choice; listings and availability are not independently verified here."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official PUCT comparison site reviewed October 27, 2026. Enter your own service ZIP/address there; no displayed default-ZIP result is used as a quote."
     },
     {
       "id": "fcc-broadband-guide",
@@ -337,9 +418,9 @@
       "url": "https://help.bdc.fcc.gov/hc/en-us/articles/10467446103579-How-to-Use-the-FCC-s-National-Broadband-Map",
       "sourceType": "government",
       "publisher": "Federal Communications Commission",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "content_retrieved",
-      "reviewNote": "Full official guide retrieved and read. It explains searching an address for provider-reported availability. A map listing is not a guarantee of service at a specific unit; confirm with the provider."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Follow current instructions when acting; availability and personal eligibility are not guaranteed."
     },
     {
       "id": "utd-new-student-tech",
@@ -347,9 +428,9 @@
       "url": "https://oit.utdallas.edu/new-to-utd/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas Office of Information Technology",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Hub links to NetID/password, email, Galaxy/eLearning, Wi-Fi, and the student technology checklist."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Follow current instructions when acting; availability and personal eligibility are not guaranteed."
     },
     {
       "id": "utd-comet-card",
@@ -357,9 +438,9 @@
       "url": "https://cometcard.utdallas.edu/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas Comet Card Office",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. The card is the campus ID; users should follow the current Get your Comet Card process and requirements."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Follow current instructions when acting; availability and personal eligibility are not guaranteed."
     },
     {
       "id": "utd-campus-map",
@@ -367,9 +448,9 @@
       "url": "https://map.utdallas.edu/",
       "sourceType": "official_utd",
       "publisher": "The University of Texas at Dallas",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "page_shell_retrieved",
-      "reviewNote": "Official page retrieved but contains an embedded map shell; interactive map behavior and place results were not verified. UTD Contact & Location separately links to this campus map."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "retrieval_failed",
+      "reviewNote": "Official map address checked October 27, 2026, but the embedded map returned an error screen. Open it directly or ask UTD for help; map functionality was not verified."
     },
     {
       "id": "utd-dining",
@@ -377,9 +458,9 @@
       "url": "https://union.utdallas.edu/facilities/dining/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas Student Union",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. Contains Student Union and Student Services Addition dining options; users should check current hours and menus."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Follow current instructions when acting; availability and personal eligibility are not guaranteed."
     },
     {
       "id": "utd-comet-cupboard",
@@ -387,9 +468,59 @@
       "url": "https://cometcupboard.utdallas.edu/",
       "sourceType": "official_utd",
       "publisher": "UT Dallas Comet Cupboard",
-      "reviewedAt": "2026-09-25",
-      "linkCheckStatus": "retrieval_failed",
-      "reviewNote": "Official search-index content reviewed; direct retrieval returned 502. The page describes food, personal-care, and household-item support and first-visit requirements. Posted hours were not treated as current."
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Follow current instructions when acting; availability and personal eligibility are not guaranteed."
+    },
+    {
+      "id": "spring-entry",
+      "title": "Initial F-1 entry and the I-20",
+      "url": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
+      "publisher": "U.S. Department of Homeland Security",
+      "sourceType": "government",
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Navigation only; follow current individual instructions."
+    },
+    {
+      "id": "spring-checkin",
+      "title": "ISSO pre/post-arrival and immigration check-in",
+      "url": "https://isso.utdallas.edu/joining-ut-dallas/pre-post-arrival-resources/",
+      "publisher": "UT Dallas ISSO",
+      "sourceType": "official_utd",
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Navigation only; follow current individual instructions."
+    },
+    {
+      "id": "spring-orientation",
+      "title": "Spring 2027 International Student Orientation",
+      "url": "https://icp.utdallas.edu/students/international-student-orientation/",
+      "publisher": "UT Dallas Intercultural Programs",
+      "sourceType": "official_utd",
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Navigation only; follow current individual instructions."
+    },
+    {
+      "id": "spring-health",
+      "title": "Institutional requirements: screening and registration holds",
+      "url": "https://icp.utdallas.edu/students/post-arrival-resources/institutional-requirements/",
+      "publisher": "UT Dallas Intercultural Programs",
+      "sourceType": "official_utd",
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Navigation only; follow current individual instructions."
+    },
+    {
+      "id": "spring-insurance",
+      "title": "International student insurance requirements",
+      "url": "https://insurance.utdallas.edu/policies/international/",
+      "publisher": "UT Dallas Student Health Insurance",
+      "sourceType": "official_utd",
+      "reviewedAt": "2026-10-27",
+      "linkCheckStatus": "checked",
+      "reviewNote": "Official page reviewed October 27, 2026. Navigation only; follow current individual instructions."
     }
   ]
 }

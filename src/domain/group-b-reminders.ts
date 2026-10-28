@@ -1,4 +1,5 @@
-export type StudentReminder = { id: string; title: string; localDateTime: string; timeZone: string; utcISO: string; done: boolean };
+import { SPRING_2027_DEADLINES, SPRING_2027_SOURCES } from '../data/spring-2027.ts';
+export type StudentReminder = { id: string; title: string; localDateTime: string; timeZone: string; utcISO: string; done: boolean; sourceId?: string; templateId?: string };
 export type DeadlineResult = { ok: true; iso: string } | { ok: false; message: string };
 
 function wallTime(instant: number, timeZone: string) {
@@ -47,8 +48,11 @@ export function readStudentReminders(value: unknown): StudentReminder[] | null {
       || typeof row.timeZone !== 'string' || typeof row.done !== 'boolean') return null;
     const deadline = resolveReminderDeadline(row.localDateTime, row.timeZone);
     if (!deadline.ok || row.utcISO !== deadline.iso) return null;
+    if (row.sourceId !== undefined && !SPRING_2027_SOURCES.some(source => source.id === row.sourceId)) return null;
+    if (row.templateId !== undefined && row.templateId !== 'arrival' && !SPRING_2027_DEADLINES.some(template => template.id === row.templateId)) return null;
+    if (row.templateId && row.templateId !== 'arrival' && SPRING_2027_DEADLINES.find(template => template.id === row.templateId)?.sourceId !== row.sourceId) return null;
     ids.add(row.id);
-    result.push({ id: row.id, title: row.title.trim(), localDateTime: row.localDateTime, timeZone: row.timeZone, utcISO: deadline.iso, done: row.done });
+    result.push({ id: row.id, title: row.title.trim(), localDateTime: row.localDateTime, timeZone: row.timeZone, utcISO: deadline.iso, done: row.done, ...(row.sourceId ? {sourceId:row.sourceId}:{}), ...(row.templateId ? {templateId:row.templateId}:{}) });
   }
   return result;
 }
@@ -74,10 +78,17 @@ export function reminderCalendar(reminder: StudentReminder, generatedAt = new Da
   if (!verified || !Number.isFinite(generatedAt.getTime())) throw new Error('This reminder could not be exported.');
   if (options.alarmMinutes !== undefined && options.alarmMinutes !== 15) throw new Error('Only an optional 15-minute calendar alert is supported.');
   const utcStamp = (iso: string) => iso.replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
-  const description = `Personal CampusBridge reminder. Original deadline: ${reminder.localDateTime.replace('T', ' ')} (${reminder.timeZone}). Check the official requirement yourself. Calendar notifications depend on your calendar settings.`;
+  const source = SPRING_2027_SOURCES.find(item => item.id === reminder.sourceId);
+  const description = `${source ? `Official reference: ${source.url}. Checked ${source.checkedOn}. ` : ''}Personal CampusBridge reminder. Original deadline: ${reminder.localDateTime.replace('T', ' ')} (${reminder.timeZone}). Check the official requirement yourself. Calendar notifications depend on your calendar settings.`;
   const alarm = options.alarmMinutes === 15 ? ['BEGIN:VALARM', 'TRIGGER:-PT15M', 'ACTION:DISPLAY', `DESCRIPTION:${escapeCalendarText(reminder.title)}`, 'END:VALARM'] : [];
   return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//CampusBridge//Group B Reminders//EN', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
     `UID:${reminder.id}@reminders.campusbridgeguide.com`, `DTSTAMP:${utcStamp(generatedAt.toISOString())}`, `DTSTART:${utcStamp(reminder.utcISO)}`,
     `SUMMARY:${escapeCalendarText(reminder.title)}`, `DESCRIPTION:${escapeCalendarText(description)}`, 'TRANSP:TRANSPARENT', ...alarm, 'END:VEVENT', 'END:VCALENDAR']
     .map(foldCalendarLine).join('\r\n') + '\r\n';
+}
+
+export type GroupBReminderDocument = {schema:2;enabled:boolean;reminders:StudentReminder[]};
+export function readGroupBReminderDocument(value:unknown):GroupBReminderDocument|null {
+ if(!value||typeof value!=='object'||!('schema'in value)||value.schema!==2||!('enabled'in value)||typeof value.enabled!=='boolean'||!('reminders'in value))return null;
+ const reminders=readStudentReminders(value.reminders);return reminders?{schema:2,enabled:value.enabled,reminders}:null;
 }

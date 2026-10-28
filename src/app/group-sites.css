@@ -5,3 +5,6 @@
   .group-shell .sidebar { position: static; height: auto; }
   .group-shell .sidebar nav a { min-width: 44px; min-height: 44px; }
 }
+@media (max-width: 520px) {
+ .public-header {padding-inline:16px;gap:10px}.public-header .brand{font-size:18px}.public-header nav{gap:10px}.public-header .button{display:inline-flex;font-size:11px;padding:10px 12px}.public-header nav>.text-link:not(:last-of-type){display:none}
+}

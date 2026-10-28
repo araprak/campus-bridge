@@ -4,6 +4,7 @@ import { PublicHeader, Footer } from '@/components/brand';
 import { requestSiteGroup } from '@/lib/site-group';
 import { GROUPS } from '@/domain/site-groups';
 import groupStyles from './group-home.module.css';
+import { GroupPreview } from '@/components/group-preview';
 
 export default async function Home() {
   const group = await requestSiteGroup();
@@ -18,7 +19,8 @@ export default async function Home() {
         <Link className="button" href="/group-tools">Open {GROUPS[group].name} tools <ArrowRight size={17}/></Link>
         <p className="small muted">Use your existing CampusBridge account. Your plan is shared across the group sites; sign in on each site separately. Password recovery opens the main CampusBridge site.</p>
       </section>}
-      <div className="landing-hero">
+      {group && <GroupPreview group={group}/>}
+      {!group && <><div className="landing-hero">
         <section className="hero page-width">
           <div className="hero-copy">
             <p className="eyebrow"><span/> BUILT FOR YOUR NEXT CHAPTER</p>
@@ -34,7 +36,7 @@ export default async function Home() {
               <span><Check size={16}/> Trusted places to turn</span>
             </div>
           </div>
-          <figure className="hero-photo"><img src="/campus-utd-mall.jpg" alt="Trees and open walkways on the UT Dallas campus" width="1280" height="960"/><span className="hero-photo-label">Your place to begin.</span><figcaption>UT Dallas campus · Stan9999, 2010 · <a href="https://commons.wikimedia.org/wiki/File:UT_Dallas_main_mall.JPG" target="_blank" rel="noopener noreferrer">Public-domain photo</a></figcaption></figure>
+          <figure className="hero-photo"><img src="/campus-utd-mall.webp" alt="Trees and open walkways on the UT Dallas campus" width="1280" height="960"/><span className="hero-photo-label">Your place to begin.</span><figcaption>UT Dallas campus · Stan9999, 2010 · <a href="https://commons.wikimedia.org/wiki/File:UT_Dallas_main_mall.JPG" target="_blank" rel="noopener noreferrer">Public-domain photo</a></figcaption></figure>
         </section>
       </div>
       <section className="journey-strip arrival-journey">
@@ -66,6 +68,7 @@ export default async function Home() {
         <div><p className="eyebrow">YOUR FIRST STEP STARTS HERE</p><h2>You bring your situation.<br/>We’ll help you find your way.</h2></div>
         <Link className="button button-light" href="/signup">Create my account <ArrowRight size={18}/></Link>
       </section>
+      </>}
     </main>
     <Footer/>
   </>;

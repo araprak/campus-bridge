@@ -1,6 +1,6 @@
 {
   "name": "campusbridge",
-  "version": "2.5.1",
+  "version": "2.7.0",
   "private": true,
   "type": "module",
   "description": "CampusBridge personalized first 30 days navigator for new UTD students.",
@@ -15,7 +15,10 @@
     "start": "next start --hostname 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.ts",
-    "seed:generate": "node scripts/seed-catalog.mjs"
+    "seed:generate": "node scripts/seed-catalog.mjs",
+    "check:isolation": "node scripts/check-group-isolation.mjs --start",
+    "check:hosts": "node scripts/check-host-versions.mjs",
+    "check:intake": "node scripts/check-intake-sources.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",
