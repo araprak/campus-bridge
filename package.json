@@ -1,6 +1,6 @@
 {
   "name": "campusbridge",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "private": true,
   "type": "module",
   "description": "CampusBridge personalized first 30 days navigator for new UTD students.",

@@ -1,5 +1,19 @@
 [
   {
+    "version": "2.8.0",
+    "label": "v2.8.0",
+    "kind": "release",
+    "date": "2026-10-28",
+    "title": "Group B website languages",
+    "notesPath": "docs/releases/v2.8.0.md",
+    "features": [
+      {
+        "title": "Group B: Website language selector",
+        "summary": "Choose from seventeen languages in alphabetical order to change the core interface across Group B, with a remembered browser preference, distinct Mandarin and Cantonese options, and right-to-left support for Arabic and Urdu."
+      }
+    ]
+  },
+  {
     "version": "2.7.1",
     "label": "v2.7.1",
     "kind": "release",

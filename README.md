@@ -1,3 +1,7 @@
+## v2.8.0 — Group B website languages (October 28, 2026)
+
+Group B’s core interface supports the 17 requested languages in alphabetical order, with a host-only remembered preference and Arabic/Urdu right-to-left layout. Translations stay local; entered and official source content retain their original language. [Release notes](docs/releases/v2.8.0.md).
+
 ## v2.7.1 — Accurate save confirmation (October 28, 2026)
 
 Corrects the arrival planner’s save confirmation while retaining newer edits made during a request. [Release notes](docs/releases/v2.7.1.md) · [Verification](docs/group-sites/verification-v2.7.md).

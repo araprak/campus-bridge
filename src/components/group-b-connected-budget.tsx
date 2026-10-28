@@ -43,7 +43,7 @@ export function GroupBConnectedBudget({accountId,state}:{accountId:string;state:
  </div>)}</fieldset>
  <dl className={styles.totals} aria-live="polite" aria-atomic="true"><div><dt>{estimate.monthly.unknownCount?'Known monthly subtotal · incomplete':'Estimated monthly total'}</dt><dd>{range(estimate.monthly)}</dd></div><div><dt>{estimate.moveIn.unknownCount?'Known move-in cash subtotal · incomplete':'Estimated move-in cash'}</dt><dd>{range(estimate.moveIn)}</dd></div></dl>
  <p className={styles.note}>{estimate.monthly.unknownCount} monthly lines and {estimate.moveIn.unknownCount} total lines are unknown. Move-in cash includes one month, one-time fees and refundable deposits. For the published UT SHIP and prepaid phone estimates, it replaces the monthly share with the upfront charge. Your own monthly overrides require a separate upfront adjustment if billed in advance. Ask about additional fees before paying.</p>
- <button type="button" disabled={saved.data.scenarios.length===1} onClick={()=>saved.setData(current=>({...current,scenarios:current.scenarios.filter(row=>row.id!==scenario.id)}))}>Remove {scenario.name||`scenario ${index+1}`}</button>
+ <button type="button" disabled={saved.data.scenarios.length===1} onClick={()=>saved.setData(current=>({...current,scenarios:current.scenarios.filter(row=>row.id!==scenario.id)}))}>Remove <span translate="no" dir="auto">{scenario.name||`scenario ${index+1}`}</span></button>
  </article>;
  })}</div>
  <button type="button" disabled={saved.data.scenarios.length>=3} onClick={()=>saved.setData(current=>({...current,scenarios:[...current.scenarios,newConnectedBudgetScenario(crypto.randomUUID(),`Scenario ${current.scenarios.length+1}`,state.answers)]}))}>Add a comparison scenario</button>

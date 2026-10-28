@@ -16,7 +16,7 @@ export default async function Home() {
         <h1 id="group-title">{GROUPS[group].title}</h1>
         <p>{GROUPS[group].description}</p>
         <ul>{GROUPS[group].features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-        <Link className="button" href="/group-tools">Open {GROUPS[group].name} tools <ArrowRight size={17}/></Link>
+        <Link className="button" href="/group-tools">{group==='b'?'Open group tools':<>Open {GROUPS[group].name} tools</>} <ArrowRight size={17}/></Link>
         <p className="small muted">Use your existing CampusBridge account. Your plan is shared across the group sites; sign in on each site separately. Password recovery opens the main CampusBridge site.</p>
       </section>}
       {group && <GroupPreview group={group}/>}

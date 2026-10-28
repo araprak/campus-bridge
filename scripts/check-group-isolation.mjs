@@ -13,7 +13,8 @@ try{
   else{assert.ok([200,404].includes(result.status),host);assert.match(html,/<title>Page not found<\/title>/,host);assert.ok(html.includes('NEXT_HTTP_ERROR_FALLBACK;404')||result.status===404,host);}
   const home=await request(host,'/');const page=await home.text();
   assert.equal(home.status,200);
-  for(const lane of ['A','B'])assert.equal(page.includes(`Open Group <!-- -->${lane}<!-- --> tools`),group===lane,`${host} landing preview belongs only to its lane`);
+  for(const lane of ['A','B'])assert.equal(page.includes(lane==='A'?'<h3>Plan your arrival</h3>':'<h3>See your move-in budget</h3>'),group===lane,`${host} landing preview belongs only to its lane`);
+  assert.equal(page.includes('aria-label="Website language"'),group==='B',`${host} language selector belongs only to Group B`);
   for(const kind of ['arrival','budget','reminders']){
    const api=await request(host,`/api/group-data/${kind}`);const allowed=group==='A'?kind==='arrival':group==='B'?kind!=='arrival':false;
    if(allowed)assert.ok([401,403,503].includes(api.status),`${host}/${kind} requires a verified account`);else assert.equal(api.status,404,`${host}/${kind} is hidden`);
@@ -22,4 +23,8 @@ try{
  }
  // Spoofed proxy headers and query strings do not select a lane.
  const spoof=await request('campusbridgeguide.com','/api/group-data/arrival?group=a',{'X-Forwarded-Host':'grp-a.campusbridgeguide.com'});assert.equal(spoof.status,404);
+ for(const host of ['campusbridgeguide.com','grp-a.campusbridgeguide.com','grp-b.campusbridgeguide.com']){
+  const result=await request(host,'/',{Cookie:'cb_group_b_language=ar'});const html=await result.text();
+  assert.ok(html.includes(host.startsWith('grp-b.')?'<html lang="ar" dir="rtl">':'<html lang="en" dir="ltr">'),`${host} ignores language preference outside Group B`);
+ }
 }finally{child?.kill('SIGTERM');}
